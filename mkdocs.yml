@@ -65,8 +65,8 @@ extra:
       - accept
 copyright: Copyright &copy; 2022 - 2023 Barna Gergely
 
-repo_url: https://github.com/BarnaGergely/kalkulus-szte
-repo_name: BarnaGergely/kalkulus-szte
+repo_url: https://github.com/BarnaGergely/kalkulus
+repo_name: BarnaGergely/kalkulus
 edit_uri: edit/main/docs/ # set main branch as default url
 
 markdown_extensions:
