@@ -4,7 +4,6 @@ theme:
   features:
     # navigaton top bar and header
     - navigation.instant
-    - navigation.tracking
     - navigation.tabs
     - navigation.sections
     - navigation.expand
@@ -63,6 +62,9 @@ extra:
       make our documentation better.
     actions:
       - accept
+extra_css:
+  - assets/stylesheets/custom.css
+
 copyright: Copyright &copy; 2022 - 2023 Barna Gergely
 
 repo_url: https://github.com/BarnaGergely/kalkulus
@@ -103,6 +105,9 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
+
+  - toc:
+      permalink: true
 
 
 extra_javascript:
