@@ -161,7 +161,6 @@ idiv eax       // eax = eax / eax
 
 ```
 
-
 ## Ciklusok működése
 
 Assembly-ben nincsenek ciklusok. Fut a program vegrehajtasa fentrol lefele sorrol sorra,
@@ -200,6 +199,15 @@ jz kezdet    // ha az elozo cmp utasitasban megadott adatok egyenlok, a kezdet c
 | <=      | jle, jng  | jbe, jna    |
 | >       | jg, jnle  | ja, jnbe    |
 | >=      | jge, jnl  | jae, jnb    |
+
+| Relació | Művelet | Jelentés              |
+| ------- | ------- | --------------------- |
+| ==      | je      | Jump Equal            |
+| !=      | jne     | Jump Not Equal        |
+| <       | jl      | Jump Lover            |
+| <=      | jle     | Jump Lover or Equal   |
+| >       | jg      | Jump Greater          |
+| >=      | jge     | Jump Greater or Equal |
 
 ### for ciklus
 
