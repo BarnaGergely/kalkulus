@@ -371,7 +371,8 @@ ebp használatával cdecl konvenzió mellett így néz ki a vermünk:
 | 2. parameter           | [ebp + 3*4] |
 | 1. parameter           | [ebp + 2*4] |
 | Visszateresi cim (ret) | [ebp + 1*4] |
-| cdecl miatt régi ebx   | [ebp + 0*4] |
+| cdecl miatt régi ebp   | [ebp + 0*4] |
+| cdecl miatt régi ebx   | [esp + 3*4] |
 | cdecl miatt régi ecx   | [esp + 2*4] |
 | cdecl miatt régi edx   | [esp + 1*4] |
 | cdecl miatt régi esi   | [esp + 0*4] |
