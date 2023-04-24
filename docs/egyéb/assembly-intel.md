@@ -89,10 +89,10 @@ Külön van előjeles (`#!GAS imul`) és elője nélküli (`#!GAS mul`) szorzás
 
 ```GAS
 push edx      // biztonsági mentjük edx-et
+
 mul ebx       // eax = eax * ebx
-mul 2         // eax = eax * 2
 mul eax       // eax = eax * eax
-mul [LENGTH]  // eax = eax * LENGTH "változó"
+
 pop edx       // mentés vissza töltése
 ```
 
@@ -102,39 +102,33 @@ pont ugyan úgy működik mint az előjel nélküli, csak kaphatunk negatív ere
 
 ```GAS
 imul ebx       // eax = eax * ebx
-imul 2         // eax = eax * 2
 imul eax       // eax = eax * eax
-imul [LENGTH]  // eax = eax * LENGTH "változó"
 ```
 
 ### Osztás
 
-Külön van elője nélküli (`#!GAS div`) és előjeles (`#!GAS idiv`) osztás utasítás. Mindkettő ugyan úgy működik: elosztja az `#!GAS eax`-ben lévő számot az általad megadott számmal, az eredmény az `#!GAS eax`-be kerül, a maradék pedig az `#!GAS edx-be`, ezért az **`#!GAS edx`-be nullát kell rakni osztás előtt!**
+Külön van elője nélküli (`#!GAS div`) és előjeles (`#!GAS idiv`) osztás utasítás. Mindkettő hasonlóképpen működik: elosztja az `#!GAS eax`-ben lévő számot az általad megadott számmal, az eredmény az `#!GAS eax`-be kerül, a maradék pedig az `#!GAS edx`-be.
 
 #### Előjel nélküli osztás (`#!GAS div`)
+
+az **`#!GAS edx`-be nullát kell rakni előjel nélküli osztás előtt!**
 
 ```GAS
 mov edx, 0
 div ebx       // eax = eax / ebx
 mov edx, 0
-div 2         // eax = eax / 2
-mov edx, 0
 div eax       // eax = eax / eax
-mov edx, 0
-div [LENGTH]  // eax = eax / LENGTH "változó"
 ```
 
 #### Előjeles osztás (`#!GAS idiv`)
 
+**Előjeles osztás előtt meg kell hívni a `#!GAS cdq` utasítást**, ez felülírja az `#!GAS edx`-et, így ebben ne legyen semmi!
+
 ```GAS
-mov edx, 0
+cdq
 idiv ebx       // eax = eax / ebx
-mov edx, 0
-idiv 2         // eax = eax / 2
-mov edx, 0
+cdq
 idiv eax       // eax = eax / eax
-mov edx, 0
-idiv [LENGTH]  // eax = eax / LENGTH "változó"
 ```
 
 #### Osztás példa
@@ -154,7 +148,7 @@ idiv [LENGTH]  // eax = eax / LENGTH "változó"
   mov ebx, [NEVEZO]     // ebx = NEVEZO "változó"
 
   mov eax, [SZAMLALO]   // eax = SZAMLALO "változó"
-  mov edx, 0            // edx kinullázása osztás előtt (ide kerül majd a maradék)
+  cdq
   idiv eax, ebx         // előjeles osztás: eax = eax / ebx
 
   // eredmények vissza mentése
