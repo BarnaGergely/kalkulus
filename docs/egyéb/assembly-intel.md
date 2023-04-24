@@ -83,7 +83,7 @@ sub [SZAMOK + 1*4], ecx   // SZAMOK 2. eleme - SZAMOK 2. eleme + ecx
 
 ### Szorzás
 
-Külön van előjeles (`#!GAS imul`) és elője nélküli (`#!GAS mul`) szorzás utasítás. Mindkettő ugyan úgy működik: adsz neki egy számot és megszorozza fixen az eax-ben lévő számmal, az eredmény az eax-be kerül, ha nem fér bele, az edx-ben folytatódik, ezért szorzásnál nem szabad semmi fontosat az edx-ben hagyni.
+Külön van előjeles (`#!GAS imul`) és elője nélküli (`#!GAS mul`) szorzás utasítás. Mindkettő ugyan úgy működik: adsz neki egy számot és megszorozza fixen az `#!GAS eax`-ben lévő számmal, az eredmény az `#!GAS eax`-be kerül, ha nem fér bele, az `#!GAS edx`-ben folytatódik, ezért szorzásnál nem szabad semmi fontosat az `#!GAS edx`-ben hagyni.
 
 #### Előjel nélküli szorzás (`#!GAS mul`)
 
@@ -109,7 +109,7 @@ imul [LENGTH]  // eax = eax * LENGTH "változó"
 
 ### Osztás
 
-Külön van elője nélküli (`#!GAS div`) és előjeles (`#!GAS idiv`) osztás utasítás. Mindkettő ugyan úgy működik: elosztja az eax-ben lévő számot az általad megadott számmal, az eredmény az eax-be kerül, a maradék pedig az edx-be, ezért az edx-be nullát kell rakni osztás előtt.
+Külön van elője nélküli (`#!GAS div`) és előjeles (`#!GAS idiv`) osztás utasítás. Mindkettő ugyan úgy működik: elosztja az `#!GAS eax`-ben lévő számot az általad megadott számmal, az eredmény az `#!GAS eax`-be kerül, a maradék pedig az `#!GAS edx-be`, ezért az **`#!GAS edx`-be nullát kell rakni osztás előtt!**
 
 #### Előjel nélküli osztás (`#!GAS div`)
 
