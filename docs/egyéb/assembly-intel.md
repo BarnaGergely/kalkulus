@@ -17,46 +17,46 @@ Ha hibát találsz vagy valamivel kiegészítenéd, nyugodtan módosítsd a doku
 
 ### adat mozhatás (mov)
 
-`mov eax, ebx` - eax értéke legyen ebx
+`#!GAS mov eax, ebx` - eax értéke legyen ebx
 
 ### Verem kezelése
 
 [Tutoriál videjó](https://youtu.be/V3ySVsubdzQ?t=190)
 
-- `push eax` - eax mnetése a stack-re
-- `pop eax` - a stack "tetején" lévő (legutóbb bele rakott) elem kivétele az `eax`-be
-- `esp` regiszter (stack pointer regiszter): mindig a verem "tetejére" mutat, a legutóbb berakott elemre
+- `#!GAS push eax` - eax mnetése a stack-re
+- `#!GAS pop eax` - a stack "tetején" lévő (legutóbb bele rakott) elem kivétele az `#!GAS eax`-be
+- `#!GAS esp` regiszter (stack pointer regiszter): mindig a verem "tetejére" mutat, a legutóbb berakott elemre
 
 ### Indirekt címzés
 
 Kapcsoszárójelekkel tudjuk elérni egy memória címen tárolt adatok értékét.
 
-- `[eax]` - az eax regiszterben lévő számot memória címként használva megpróbál betölteni a memóriából egy adatot. Ha memória cím volt benne vagy szerencséd volt és pont létező memóriára mutat a benne lévő szám, megkapot az általa mutatott értéket.
+- `#!GAS [eax]` - az eax regiszterben lévő számot memória címként használva megpróbál betölteni a memóriából egy adatot. Ha memória cím volt benne vagy szerencséd volt és pont létező memóriára mutat a benne lévő szám, megkapot az általa mutatott értéket.
 
-- `[CIMKE]` - A CIMKE címkén (ami ugye egy memória címként működik) lévő adatot kéri be a memóriából
+- `#!GAS [CIMKE]` - A CIMKE címkén (ami ugye egy memória címként működik) lévő adatot kéri be a memóriából
 
 A kapcsoszárójelekben lévő memóriacímhez tudunk hozzá adni. Ez annyi bájttal elcsúsztatja a memóriacímet, amennyit hozzá adtunk. Az integer tipusú változóink 4 bájtosak, szóval ha egy tömb következő eleme érdekel 4-et kell hozzá adnod a memória címhez.
 
-- `[TOMB+0*4]` - TOMB címkén lévő adatsorozat _(ismertedd nevén tömb)_ 1. eleme
-- `[TOMB+1*4]` - TOMB címkén lévő tömb 2. eleme
-- `[TOMB+2*4]` - TOMB címkén lévő tömb 3. eleme
+- `#!GAS [TOMB+0*4]` - TOMB címkén lévő adatsorozat _(ismertedd nevén tömb)_ 1. eleme
+- `#!GAS [TOMB+1*4]` - TOMB címkén lévő tömb 2. eleme
+- `#!GAS [TOMB+2*4]` - TOMB címkén lévő tömb 3. eleme
 
 Ha megfigyeled ez olyan, mint egy C-s tömb: _NULLÁTÓL indexelünk!!!_
 
 Egy másik regiszterrel akár dinamikusan is indexelhetünk egy tömböt
 
-- `[SZAMOK+eax*4]` - TOMB címkén lévő "tomb" eax-edik eleme
+- `#!GAS [SZAMOK+eax*4]` - TOMB címkén lévő "tomb" eax-edik eleme
 
 És persze az eltolás is működik regiszterekből bejövő címekkel is.
 
-- `[ebx+0*4]` - ebx-ben lévő memóriacímen lévő tömb 1. eleme
-- `[ebx+eck*4]` - ebx-ben lévő memóriacímen lévő tömb eck-edik eleme
+- `#!GAS [ebx+0*4]` - ebx-ben lévő memóriacímen lévő tömb 1. eleme
+- `#!GAS [ebx+eck*4]` - ebx-ben lévő memóriacímen lévő tömb eck-edik eleme
 
 mov, add, cmp, stb. utasításokban **nem használhatunk mindkét paramétérben indirekt címzést!!!!!!!**
 
-Ez hibás (el se olvasd!): `mov [TOMB + 2*4], [eax + edx*4] // HIBÁS`
+Ez hibás (el se olvasd!): `#!GAS mov [TOMB + 2*4], [eax + edx*4] // HIBÁS`
 
-```assembly
+```GAS
 mov ecx, [eax + edx*4]
 mov [TOMB + 2*4], ecx // HELYES
 ```
@@ -65,7 +65,7 @@ mov [TOMB + 2*4], ecx // HELYES
 
 ### Összeadés
 
-```assembly
+```GAS
 add eax, ebx              // összedja az eax-ben lévő számból az ebx-ben lévő számot, az eredményt az eax-be rakja
 add ecx, 3                // ecx = ecx + 3
 add ecx, [SZAMOK + 0*4]   // ecx = ecx + SZAMOK tömb nulladik indexű, az az 1. eleme
@@ -74,7 +74,7 @@ add [SZAMOK + 1*4], ecx   // SZAMOK 2. eleme = SZAMOK 2. eleme + ecx
 
 ### Kivonás
 
-```assembly
+```GAS
 sub eax, ebx              // kivinja az eax-ben lévő szából az ebx-ben lévő számot, az eredményt az eax-be rakja
 sub ecx, 3                // ecx = ecx - 3
 sub ecx, [SZAMOK + 0*4]   // ecx = ecx- SZAMOK tömb nulladik indexű, az az 1. eleme
@@ -83,11 +83,11 @@ sub [SZAMOK + 1*4], ecx   // SZAMOK 2. eleme - SZAMOK 2. eleme + ecx
 
 ### Szorzás
 
-Külön van előjeles (`imul`) és elője nélküli (`mul`) szorzás utasítás. Mindkettő ugyan úgy működik: adsz neki egy számot és megszorozza fixen az eax-ben lévő számmal, az eredmény az eax-be kerül, ha nem fér bele, az edx-ben folytatódik, ezért szorzásnál nem szabad semmi fontosat az edx-ben hagyni.
+Külön van előjeles (`#!GAS imul`) és elője nélküli (`#!GAS mul`) szorzás utasítás. Mindkettő ugyan úgy működik: adsz neki egy számot és megszorozza fixen az eax-ben lévő számmal, az eredmény az eax-be kerül, ha nem fér bele, az edx-ben folytatódik, ezért szorzásnál nem szabad semmi fontosat az edx-ben hagyni.
 
-#### Előjel nélküli szorzás (`mul`)
+#### Előjel nélküli szorzás (`#!GAS mul`)
 
-```assembly
+```GAS
 push edx      // biztonsági mentjük edx-et
 mul ebx       // eax = eax * ebx
 mul 2         // eax = eax * 2
@@ -96,11 +96,11 @@ mul [LENGTH]  // eax = eax * LENGTH "változó"
 pop edx       // mentés vissza töltése
 ```
 
-#### Előjeles szorzás (`imul`)
+#### Előjeles szorzás (`#!GAS imul`)
 
 pont ugyan úgy működik mint az előjel nélküli, csak kaphatunk negatív eredményt is
 
-```assembly
+```GAS
 imul ebx       // eax = eax * ebx
 imul 2         // eax = eax * 2
 imul eax       // eax = eax * eax
@@ -109,11 +109,11 @@ imul [LENGTH]  // eax = eax * LENGTH "változó"
 
 ### Osztás
 
-Külön van elője nélküli (`div`) és előjeles (`idiv`) osztás utasítás. Mindkettő ugyan úgy működik: elosztja az eax-ben lévő számot az általad megadott számmal, az eredmény az eax-be kerül, a maradék pedig az edx-be, ezért az edx-be nullát kell rakni osztás előtt.
+Külön van elője nélküli (`#!GAS div`) és előjeles (`#!GAS idiv`) osztás utasítás. Mindkettő ugyan úgy működik: elosztja az eax-ben lévő számot az általad megadott számmal, az eredmény az eax-be kerül, a maradék pedig az edx-be, ezért az edx-be nullát kell rakni osztás előtt.
 
-#### Előjel nélküli osztás (`div`)
+#### Előjel nélküli osztás (`#!GAS div`)
 
-```assembly
+```GAS
 mov edx, 0
 div ebx       // eax = eax / ebx
 mov edx, 0
@@ -124,9 +124,9 @@ mov edx, 0
 div [LENGTH]  // eax = eax / LENGTH "változó"
 ```
 
-#### Előjeles osztás (`idiv`)
+#### Előjeles osztás (`#!GAS idiv`)
 
-```assembly
+```GAS
 mov edx, 0
 idiv ebx       // eax = eax / ebx
 mov edx, 0
@@ -139,7 +139,7 @@ idiv [LENGTH]  // eax = eax / LENGTH "változó"
 
 #### Osztás példa
 
-```assembly
+```GAS
 .intel_syntax noprefix
 .data
   SZAMLALO: .int 4
@@ -175,13 +175,13 @@ mi csak a ugralni tudunk benne feljebb es lejebb cimkekre.
 
 ## Ugrás működése
 
-`jmp <memoriacim>` - a vezerles a memoriacim-re ugrik es onnan folytatodik
+`#!GAS jmp <memoriacim>` - a vezerles a memoriacim-re ugrik es onnan folytatodik
 
 Ne feledd a cimkek sima memoriacimekkent viselkednek, igy lehet rajuk ugrani.
 
 ### Vegtelen ciklus:
 
-```assembly
+```GAS
 kezdet:
 // program sorai
 jmp kezdet
@@ -191,7 +191,7 @@ jmp kezdet
 
 Vannak feteteles ugro utasitasok is, amik csak akkor ugranak, ha egy feltetel teljesul. _(ez nem igaz, a háttérben nem igy mukodik, de igy a legerthetobb és a használata a mi feladatainkban ilyen)_
 
-```assembly
+```GAS
 cmp edx, 42  // edx es a 42 osszehasonlitasa
 jz kezdet    // ha az elozo cmp utasitasban megadott adatok egyenlok, a kezdet cimkere ugrik
 ```
@@ -209,7 +209,7 @@ jz kezdet    // ha az elozo cmp utasitasban megadott adatok egyenlok, a kezdet c
 
 ### for ciklus
 
-```assembly
+```GAS
 mov ecx, 0      // legyen ez az "i" valtozo, amiben taroljuk epp hanyadik elemnel jar a ciklus
 
 for:  // for ciklus kezdetet jelzo cimke
@@ -245,7 +245,7 @@ forend:  // for ciklus vege
 
 ### Megoldás
 
-```assembly
+```GAS
 mov ecx, 0      // legyen ez az "i" valtozo, amiben taroljuk epp hanyadik elemnel jar a ciklus
 mov eax, 0      // ide fog kerulni hogy hany elemet raktunk a kimeneti tombbe
 
@@ -284,13 +284,13 @@ forend:  // for ciklus vege
 
 [Tutoriál videjó](https://www.youtube.com/watch?v=V3ySVsubdzQ&list=PLTD6Kt9p80KBVDCvFy6vAZ8tuhLH5AzAW&index=4)
 
-[**Nem érdekel az elmélet, csak a példa program**](https://github.com/BarnaGergely/SZTE-Unniversity-Codes/blob/main/Assembly/Assembly_ZH2_Vazlat.md#ez-pedig-egy-t%C3%B6k%C3%A9letes-f%C3%BCggv%C3%A9ny-h%C3%ADv%C3%A1s)
+[**Nem érdekel az elmélet, csak a példa program**](https://barnagergely.github.io/kalkulus/egy%C3%A9b/assembly/#ez-pedig-egy-tokeletes-fuggveny-hivas)
 
 Ha szeretnél egy C-ből hívható Assembly függvényt csinálni, egy globális címkét kell csinálnod olyan nevűt, ami a függvény neve lesz.
 
-pl. ezt a C függvényt valósítsuk meg Assembly-ben: `void eljaras(){ return; }`
+pl. ezt a C függvényt valósítsuk meg Assembly-ben: `#!GAS void eljaras(){ return; }`
 
-```assembly
+```GAS
 // ez a rész a függvény nevét adja meg
 .global eljaras
 eljaras:
@@ -298,15 +298,15 @@ eljaras:
   ret // ez az utasítás vissza ugrik, oda ahonnan meghívták a függvényt, szóval nagyjából return; megfelelője
 ```
 
-Assembly-ból egy függvényt a `call fuggvenyNeve` utasítással tudunk meghívni.
+Assembly-ból egy függvényt a `#!GAS call fuggvenyNeve` utasítással tudunk meghívni.
 
 ### Visszatérési érték
 
 Okos programozók réges régen egy messzi-messzi... kitalálták, hogy a függvény visszatérési értékét adjuk vissza az eax regiszterben.
 
-`int ketto(){ return 2; }`
+`#!GAS int ketto(){ return 2; }`
 
-```assembly
+```GAS
 .global ketto
 ketto:
 
@@ -321,7 +321,7 @@ A főprogram, ahonnan meghíták a függvényt is tárolna egy rakás dolgot a r
 
 **A legbiztosabb ha lementesz mindent az eax-en és az esp-n kívül:**
 
-```assembly
+```GAS
 .global nemRontElMindent
 nemRontElMindent:
     push ebp
@@ -342,9 +342,9 @@ nemRontElMindent:
 
 ### Paraméterek és ret
 
-Ez bonyolult lesz. ;( A függvény paraméterei a stack (verem) en adódnak át. A stack utolsó elemére mutat az esp regiszter, így a `[esp]` címzéssel elérhetjük a legutóbb berakott elemet, az `[esp + 1*4]`-el a következőt, stb. A stack megfordítja a beadott értékek sorrendjét: amit utoljára bele raktunk azt fogjuk tudni elsőnek kivenni.
+Ez bonyolult lesz. ;( A függvény paraméterei a stack (verem) en adódnak át. A stack utolsó elemére mutat az esp regiszter, így a `[esp]` címzéssel elérhetjük a legutóbb berakott elemet, az `#!GAS [esp + 1*4]`-el a következőt, stb. A stack megfordítja a beadott értékek sorrendjét: amit utoljára bele raktunk azt fogjuk tudni elsőnek kivenni.
 
-A függvény hívás tesz egy akkor nagy szivességet hogy fordított sorrendben dobálja be a verembe a paramétereket, így mi jó sorrendben tudjuk kivenni, viszont utána jön a köcsög függvény hívás és bele teszi a címet, amire majd a függvény végén a `ret` utasításnak vissza kell térni.
+A függvény hívás tesz egy akkor nagy szivességet hogy fordított sorrendben dobálja be a verembe a paramétereket, így mi jó sorrendben tudjuk kivenni, viszont utána jön a köcsög függvény hívás és bele teszi a címet, amire majd a függvény végén a `#!GAS ret` utasításnak vissza kell térni.
 
 Szóval így néz ki a verem egy függvény meghívásakor:
 
@@ -359,7 +359,7 @@ Ne ilyesszen meg hogy fejjel lefelé van a verem, valamiért lefele bővül: ha 
 
 A gond ott kezdődik, hogy ha rakunk még dolgokat a verembe, mondjuk mivel cdecl fegyvert fog a fejünkhöz és kötelez rá, akkor egy idő után foggalmunk nem lesz hogy mennyit kéne az esp-hez hozzá adni, hogy elérjük a paramétereket. 
 
-Erre nyújt megoldást az `ebp` (bázi pointer): a függvény elején ebbe elmentjük az esp értékét, így már pakolhatunk akár mit a verembe, az ebp-vel, mindig el fogjuk tudni érni a paramétereket. Annyira kell figyelni, hogy ebp-t is le kell menteni a cdecl szerint, mielőtt még módosulna.
+Erre nyújt megoldást az `#!GAS ebp` (bázi pointer): a függvény elején ebbe elmentjük az esp értékét, így már pakolhatunk akár mit a verembe, az ebp-vel, mindig el fogjuk tudni érni a paramétereket. Annyira kell figyelni, hogy ebp-t is le kell menteni a cdecl szerint, mielőtt még módosulna.
 
 ebp használatával cdecl konvenzió mellett így néz ki a vermünk:
 
@@ -374,7 +374,7 @@ ebp használatával cdecl konvenzió mellett így néz ki a vermünk:
 | cdecl miatt régi edx   | [esp + 1*4] |
 | cdecl miatt régi esi   | [esp + 0*4] |
 
-#### Ez pedig egy tökéletes függvény hívás:
+### Ez pedig egy tökéletes függvény hívás:
 
 Ha így hívod meg a függvényt, csinálhatsz bármit a regiszterekkel, rakhatsz bármit a stack-re, nem lesz gond és bármikor el fogod tudni érni a paramétereket.
 
@@ -390,7 +390,7 @@ int tokeletesFuggveny(int szam1, int szam2){
 
 Assembly megvalósítás:
 
-```assembly
+```GAS
 .global tokeletesFuggveny
 tokeletesFuggveny:
   // Prológus:
@@ -420,7 +420,7 @@ tokeletesFuggveny:
 
 
 ## 3. Házi feladat megoldás
-```assembly
+```GAS
 .intel_syntax noprefix
 
 .text
@@ -532,7 +532,7 @@ filterElements:
 
 ## 4. Házi feladat megoldás
 
-```assembly
+```GAS
 .intel_syntax noprefix
 .text
 
