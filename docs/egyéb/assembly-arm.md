@@ -9,8 +9,8 @@
 .syntax unified  /* Szintaxis meghatározás */
 .cpu cortex-a7  /* Processzor megadása, az osztáshoz kell */
 
-/* Címke, ugyan az mint Intel-en */
-HELLO: .asciz ""Hello World\n"
+/* címke, ugyan az mint Intel-en */
+HELLO: .asciz "Hello World\n"
 
 /* Data szekció */
 .data
@@ -71,9 +71,9 @@ Szóval ahhoz hogy egy tömb elemeit be tudjuk járni, előbb be kell töltenün
     ldr r0, =TOMB       /* r0 regiszterbe betöltjük a TOMB nevű címke címét */
     ldr r1, [r0]        /* Az r1 regiszterbe betöltjük az r0-ban lévő memóriacímen lévő adatot a memóriából (jelen esetben ez a TOMB 1. eleme) */
     ldr r2, [r0, #1*4]  /* TOMB 2. elemének betöltése r2-be */
-    ldr r3, [r0, #1*4]  /* TOMB 2. elemének betöltése r2-be */
+    ldr r3, [r0, #2*4]  /* TOMB 3. elemének betöltése r3-be */
 
-    // TOMB r6indexen lávő elemének elérése (TOMB[r6])
+    // TOMB[r6] -- TOMB r6 indexen lévő elemének elérése
     mov r4, #4          // Mivel nem lehet a szorzásban konstans, betöltjük egy regiszterbe a 4-et (4 bájt-os számokból áll a tömb)
     mul r5, r6, r4      // r5 = r6*4 - Mivel nem lehet a címzésben regisztert szorozni konstanssal, külön kell megcsinálni
     ldr r7, [r0, r5]    // r7-be töltöm be a számot, amit ugye az előbb kiszámolt eltolással (r5) kapok meg
@@ -148,7 +148,7 @@ előjel néküli osztás: `#!GAS udiv` - ugyan úgy működik
 
 - Csakis 4 paramétert adhatunk át egy függvénynek, ezeket a meghívása előtt az r0-r3 regiszterekbe kell másolni.
 - A visszatérési értéket az r0-ba kell rakni, mielőtt véget ér a függvény, így sokkal könyebb őket a függvényben elérni.
-- Itt is van cedcl (regiszter mentés és vissza töltés), de sokkal egyszerűbb, egy utasítás az elején (`#!GAS push {r4 -r11 , lr}`) és egy a végén (``#!GAS pop {r4 -r11 , pc}`).
+- Itt is van cedcl (regiszter mentés és vissza töltés), de sokkal egyszerűbb, egy utasítás az elején (`#!GAS push {r4-r11 , lr}`) és egy a végén (``#!GAS pop {r4-r11 , pc}`).
 - ret nem kell, az epilógus a függvény vége.
 
 Függvény hívás: `#!GAS bl fuggvenynev`
@@ -196,8 +196,8 @@ cmp r0, #6
 ble igaz
 ```
 
-| Relació | Művelet | Jelentés              |
-| ------- | ------- | --------------------- |
+| Relació | Művelet | Jelentés                |
+| ------- | ------- | ----------------------- |
 | ==      | beq     | Branch Equal            |
 | !=      | bne     | Branch Not Equal        |
 | <       | blt     | Branch Lover Then       |
@@ -214,7 +214,7 @@ Pont mint Intel-en, negálással lehet hatékonyan megvalósítani.
 ```GAS
 cmp r5, #18
 ble else   /* ha (r5>18), ugorjunk az else címkére, egyébként menjünk tovább*/
-    
+
     /* ha igaz az eredeti feltétel, megy simán tovább a program  és eljut ide*/
 
     b endif /* hamis rész átugrása */

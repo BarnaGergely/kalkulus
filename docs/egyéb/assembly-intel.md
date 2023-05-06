@@ -1,6 +1,7 @@
-# Assembly Intel X86 Linux - 2.ZH Jegyzet 
+# Assembly Intel X86 Linux - 2.ZH Jegyzet
 
 Ez egy jegyzetet az Intel x86 Linux Assembly témaköréből. Nem teljes és egyáltalán nem biztos hogy hibátlan, de aránylag rövid és érhető.
+
 - Szöveggel elmagyaráztam mindent
 - tele van példa programokkal
 - Házi feladatok megoldása elmagyarázva
@@ -284,6 +285,7 @@ jmp for         // ha ide ert a program vissza ugrik a for elejere
 
 forend:  // for ciklus vege
 ```
+
 ## Függvények készítése
 
 [Tutoriál videjó](https://www.youtube.com/watch?v=V3ySVsubdzQ&list=PLTD6Kt9p80KBVDCvFy6vAZ8tuhLH5AzAW&index=4)
@@ -361,7 +363,7 @@ Szóval így néz ki a verem egy függvény meghívásakor:
 
 Ne ilyesszen meg hogy fejjel lefelé van a verem, valamiért lefele bővül: ha bele rakunk egy elemet az az aljára kerül és az esp pointer is lentebb mutat egyel.
 
-A gond ott kezdődik, hogy ha rakunk még dolgokat a verembe, mondjuk mivel cdecl fegyvert fog a fejünkhöz és kötelez rá, akkor egy idő után foggalmunk nem lesz hogy mennyit kéne az esp-hez hozzá adni, hogy elérjük a paramétereket. 
+A gond ott kezdődik, hogy ha rakunk még dolgokat a verembe, mondjuk mivel cdecl fegyvert fog a fejünkhöz és kötelez rá, akkor egy idő után foggalmunk nem lesz hogy mennyit kéne az esp-hez hozzá adni, hogy elérjük a paramétereket.
 
 Erre nyújt megoldást az `#!GAS ebp` (bázi pointer): a függvény elején ebbe elmentjük az esp értékét, így már pakolhatunk akár mit a verembe, az ebp-vel, mindig el fogjuk tudni érni a paramétereket. Annyira kell figyelni, hogy ebp-t is le kell menteni a cdecl szerint, mielőtt még módosulna.
 
@@ -423,8 +425,8 @@ tokeletesFuggveny:
   ret
 ```
 
-
 ## 3. Házi feladat megoldás
+
 ```GAS
 .intel_syntax noprefix
 
@@ -469,7 +471,7 @@ filterElements:
         mov eax, [ebp+4+4]        # eax = input tömb címe
         add edx, [eax + ecx*4]  # sum += input[idx];
 
-        inc ecx         # idx++
+        inc ecx         # idx++eckGAS
         jmp for1        # ha ide ert a program vissza ugrik a for elejere
 
     for1end:  # for ciklus vege
@@ -488,7 +490,7 @@ filterElements:
         jge for2end        # akkor ugorjunk a for1end cimkere (kilép a for-ból)
 
 
-        
+
         push ebx        # length lementése
         mov ebx, [ebp+4+4]  # ebx = input tömb címe
 
@@ -607,7 +609,7 @@ ideiglenes matek izé = bl
         # ág else
         nemnagybetu:
         mov byte ptr [ecx + 1 * edx], al # output [idx] = ch
-        
+
         kesz:
 
         inc edx     # idx++
