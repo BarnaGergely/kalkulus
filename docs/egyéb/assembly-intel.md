@@ -5,6 +5,8 @@ Ez egy jegyzetet az Intel x86 Linux Assembly témaköréből. Nem teljes és egy
 - tele van példa programokkal
 - Házi feladatok megoldása elmagyarázva
 
+A leírásban lévő videók nagyon jól emagyarázzák az Assembly működését, de egy kicsit más szintaxist mutatnak be.
+
 Ha hibát találsz vagy valamivel kiegészítenéd, nyugodtan módosítsd a dokumentumot vagy jelezd felém.
 
 ## Alap assembly program
@@ -27,7 +29,7 @@ Ha hibát találsz vagy valamivel kiegészítenéd, nyugodtan módosítsd a doku
 - `#!GAS pop eax` - a stack "tetején" lévő (legutóbb bele rakott) elem kivétele az `#!GAS eax`-be
 - `#!GAS esp` regiszter (stack pointer regiszter): mindig a verem "tetejére" mutat, a legutóbb berakott elemre
 
-### Indirekt címzés
+### Indirekt címzés (tömbök)
 
 Kapcsoszárójelekkel tudjuk elérni egy memória címen tárolt adatok értékét.
 
@@ -50,7 +52,7 @@ Egy másik regiszterrel akár dinamikusan is indexelhetünk egy tömböt
 És persze az eltolás is működik regiszterekből bejövő címekkel is.
 
 - `#!GAS [ebx+0*4]` - ebx-ben lévő memóriacímen lévő tömb 1. eleme
-- `#!GAS [ebx+eck*4]` - ebx-ben lévő memóriacímen lévő tömb eck-edik eleme
+- `#!GAS [ebx+ecx*4]` - ebx-ben lévő memóriacímen lévő tömb ecx-edik eleme
 
 mov, add, cmp, stb. utasításokban **nem használhatunk mindkét paramétérben indirekt címzést!!!!!!!**
 
@@ -63,7 +65,7 @@ mov [TOMB + 2*4], ecx // HELYES
 
 ## Aritmetika (matek műveletek)
 
-### Összeadés
+### Összeadás
 
 ```GAS
 add eax, ebx              // összedja az eax-ben lévő számból az ebx-ben lévő számot, az eredményt az eax-be rakja
@@ -166,7 +168,7 @@ idiv eax       // eax = eax / eax
 Assembly-ben nincsenek ciklusok. Fut a program vegrehajtasa fentrol lefele sorrol sorra,
 mi csak a ugralni tudunk benne feljebb es lejebb cimkekre.
 
-## Ugrás működése
+### Ugrás működése
 
 `#!GAS jmp <memoriacim>` - a vezerles a memoriacim-re ugrik es onnan folytatodik
 
@@ -407,7 +409,7 @@ tokeletesFuggveny:
   mov ebx, [ebp + 2*4]  // 1. paraméter metöltése az ebx-be
   mov ecx, [ebp + 3*4]  // 2. paraméter metöltése az ecx-be
 
-  add ebx, ecx  // ebx = ebx + eck (szam1 + szam2)
+  add ebx, ecx  // ebx = ebx + ecx (szam1 + szam2)
 
   mov eax, ebx  // visszatérési érték beállítása az összeadás eredményére
 
