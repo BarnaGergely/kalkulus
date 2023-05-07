@@ -151,7 +151,6 @@ előjel néküli osztás: `#!GAS udiv` - ugyan úgy működik
 - A visszatérési értéket az r0-ba kell rakni, mielőtt véget ér a függvény, így sokkal könyebb őket a függvényben elérni.
 - Itt is van cedcl (regiszter mentés és vissza töltés), csak ARM eljáráshívási konvenciónak hívják. Sokkal egyszerűbb, egy utasítás az elején (`#!GAS push {r4-r11 , lr}`) és egy a végén (``#!GAS pop {r4-r11 , pc}`).
 - Itt nincs ret, simán az epilógus a függvény vége
-- ne használd a stack-et (pop, push) a függvényben (ne kérdezd miért, nem értem a gyak jegyzetet, de ez a biztos)
 
 Függvény hívás: `#!GAS bl fuggvenynev`
 
