@@ -27,12 +27,13 @@ HELLO: .asciz "Hello World\n"
 
 Rengeteg regiszterünk van, ami nagyon sokat könnyít a programozásban. nevük simán r0, r1, r2, r3, ... ,r14
 
-r0-tól r10-ig általános célú regiszterek, arra használod amire csak akarod, mint az eax, ebx, ecx és edx Intel-en. A többi speciális
+r0-tól r10-ig általános célú regiszterek, arra használod amire csak akarod, mint az eax, ebx, ecx és edx Intel-en. A többi speciális.
 
 ### Speciális regiszterek:
 
 - r13-as regisztert elnevezték sp-nek (Stack Pointer). Ez mutatja a verem tetejét
-- lr (r14) - Link Register, ha hívsz egy függvényt, ez tárolja honnan lett meghívva, ide tér vissza a ret utasításkor a program
+- lr (r14) - Link Register, ha hívsz egy függvényt, ez tárolja honnan lett meghívva, ide tér vissza a függvény végén
+- Van még pár, de ezekre sincs szükség a ZH-hoz, ezért nem untatlak vele
 
 ## Utasítások
 
@@ -53,7 +54,7 @@ Ezzel tudjuk egy címke (tömb) címét betölteni egy regiszterbe. (mindjárt m
 
 - `#!GAS ldr r0, =CIMKE` - Címkék elé = jelet kell írni , CIMKE nevű címkének a címének betöltése az r0 regiszterbe
 - `#!GAS ldr r1, [r0]` - az r0 regiszterben található memóriacímen lévő adat betöltése az r1 regiszterbe (indirekt címzés)
-- `#!GAS ldr r0, #5` - ezzel is lehet kis számokat beállítani r0 = 5
+- `#!GAS ldr r0, =5` - ezzel is lehet kis számokat beállítani r0 = 5
 
 #### Indirekt címzés (tömbök)
 
@@ -146,10 +147,10 @@ előjel néküli osztás: `#!GAS udiv` - ugyan úgy működik
 
 ## Függvények készítése
 
-- Csakis 4 paramétert adhatunk át egy függvénynek, ezeket a meghívása előtt az r0-r3 regiszterekbe kell másolni.
+- Egyszerűen 4 paramétert adhatunk át egy függvénynek, ezeket a meghívása előtt az r0-r3 regiszterekbe kell másolni. Lehetne még stack-en is átadni paramétereket, de ez nem kell a ZH-hoz
 - A visszatérési értéket az r0-ba kell rakni, mielőtt véget ér a függvény, így sokkal könyebb őket a függvényben elérni.
-- Itt is van cedcl (regiszter mentés és vissza töltés), de sokkal egyszerűbb, egy utasítás az elején (`#!GAS push {r4-r11 , lr}`) és egy a végén (``#!GAS pop {r4-r11 , pc}`).
-- ret nem kell, az epilógus a függvény vége.
+- Itt is van cedcl (regiszter mentés és vissza töltés), csak ARM eljáráshívási konvenciónak hívják. Sokkal egyszerűbb, egy utasítás az elején (`#!GAS push {r4-r11 , lr}`) és egy a végén (``#!GAS pop {r4-r11 , pc}`).
+- Itt nincs ret, simán az epilógus a függvény vége
 - ne használd a stack-et (pop, push) a függvényben (ne kérdezd miért, nem értem a gyak jegyzetet, de ez a biztos)
 
 Függvény hívás: `#!GAS bl fuggvenynev`
