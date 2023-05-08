@@ -1,0 +1,37 @@
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: space-between;
+
+  margin: 0;
+  padding: 0;
+}
+
+.image-grid figure {
+  width: 48% !important;
+
+  padding: 0;
+  margin: 0;
+}
+
+.image-grid figure figcaption {
+  margin: 0;
+}
+
+.grid-2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: space-between;
+
+  margin: 0;
+  padding: 0;
+}
+
+.grid-2 > div {
+  width: 48% !important;
+
+  padding: 0;
+  margin: 0;
+}
