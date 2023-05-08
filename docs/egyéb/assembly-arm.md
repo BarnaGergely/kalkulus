@@ -1,7 +1,7 @@
 # ARM 32 bit Assembly - Nagy ZH Jegyzet
 
 - Nagyon hasonlít az Intel Assembly-re, ezért csak különbségeket írom le. [Intel Assembly Jegyzet](assembly-intel.md)
-- Egyszerűbb mint az Intel, ez használnám a ZH-n.
+- Egyszerűbb mint az Intel, ez használnám a nagy ZH-n is.
 
 ## Alap Assembly program
 
@@ -244,9 +244,22 @@ b for       // ha ide ert a program vissza ugrik a for elejere
 forend:     // for ciklus vege
 ```
 
-## Gyakorló feladat megoldása
+## Nagy ZH
 
-Hibás, a visszatérési érték valamiért mindig -1, de a visszatérési tömböt (Contents) jól tölti fel.
+- Szinte pont ugyan olyan volt 2023-ban mit a gyakorló ZH
+  - Egy függvényt kellett írni, ami bejár egy paraméterben megadott input tömböt
+  - valamilyen feltétel szerint átmásolja néhány elemét a paraméterben megadott output tömbbe
+  - és annyival tér vissza amennyi elemet átmásolt
+  - Szóval kell hozzá: függvény hívás (cedcl), if elágazás, for ciklus, regiszter másolás és némi matek
+- Nem lehet javítani, ezért nagyon készülj fel rá
+- Bírón lesz írva
+- Lehet használni a hivatalos gyak jegyzetet, amit ha ismersz, hatalmas segítség:
+  - 7. gyak jegyzet végén van komplett tömb elemeit for ciklussal másoló ARM függvény!
+
+## Gyakorló nagy ZH megoldása
+
+- [feladat.pdf](../assets/other/egyeb/assembly/gyakorlo-zh/feladat.pdf)
+- [minta.zip](../assets/other/egyeb/assembly/gyakorlo-zh/minta.zip)
 
 ```GAS
 .syntax unified
