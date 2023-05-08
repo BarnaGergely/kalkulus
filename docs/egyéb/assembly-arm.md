@@ -247,14 +247,14 @@ forend:     // for ciklus vege
 ## Nagy ZH
 
 - Szinte pont ugyan olyan volt 2023-ban mit a gyakorló ZH
-  - Egy függvényt kellett írni, ami bejár egy paraméterben megadott input tömböt
-  - valamilyen feltétel szerint átmásolja néhány elemét a paraméterben megadott output tömbbe
-  - és annyival tér vissza amennyi elemet átmásolt
-  - Szóval kell hozzá: függvény hívás (cedcl), if elágazás, for ciklus, regiszter másolás és némi matek
+    - Egy függvényt kellett írni, ami bejár egy paraméterben megadott input tömböt
+    - valamilyen feltétel szerint átmásolja néhány elemét a paraméterben megadott output tömbbe
+    - és annyival tér vissza amennyi elemet átmásolt
+    - Szóval kell hozzá: függvény hívás (cedcl), if elágazás, for ciklus, regiszter másolás és némi matek
 - Nem lehet javítani, ezért nagyon készülj fel rá
 - Bírón lesz írva
 - Lehet használni a hivatalos gyak jegyzetet, amit ha ismersz, hatalmas segítség:
-  - 7. gyak jegyzet végén van komplett tömb elemeit for ciklussal másoló ARM függvény!
+  - hetedik gyak jegyzet végén van komplett tömb elemeit for ciklussal másoló ARM függvény!
 
 ## Gyakorló nagy ZH megoldása
 
@@ -267,11 +267,11 @@ forend:     // for ciklus vege
 
 .data
     // Előre megadott nagy konstans számok mentése a memóriába, mivel túl nagyon konstans-nak
-    
+
     SZAM1: .int 0xbadc0ffe
     SZAM2: .int 0x11223344
     SZAM3: .int -2048
-    
+
 
 .text
 
@@ -349,7 +349,7 @@ feladatX:
 
             add r4, r4, #1      // counter++
         if1end:
-    
+
         add r5, r5, #1  // idx++
         b for
     endfor:
