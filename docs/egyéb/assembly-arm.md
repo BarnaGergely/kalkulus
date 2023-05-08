@@ -254,7 +254,8 @@ forend:     // for ciklus vege
 - Nem lehet javítani, ezért nagyon készülj fel rá
 - Bírón lesz írva
 - Lehet használni a hivatalos gyak jegyzetet, amit ha ismersz, hatalmas segítség:
-  - hetedik gyak jegyzet végén van komplett tömb elemeit for ciklussal másoló ARM függvény!
+    - hetedik gyak jegyzet végén van komplett tömb elemeit for ciklussal másoló ARM függvény!
+- Lehet használni VScode-ot, amihez fel lehet rakni arm és intel syntax highlight bővítményt, az is sokat segít
 
 ## Gyakorló nagy ZH megoldása
 
