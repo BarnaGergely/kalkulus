@@ -31,8 +31,6 @@ A függvény eltolása az „y” tengely mentén.
 
 ![függvény transzformááció](../../assets/images/fuggveny-transzformaciok/fuggveny-abszolut-erteke.gif)
 
-$$|\log_{2}{(x+3)}|$$
-
 A függvény negatív részének tükrözése az „x” tengelyre. (felvisszük a negatív részt)
 
 ## A függvény változóján végre hajtható műveletek
@@ -41,22 +39,30 @@ A függvény negatív részének tükrözése az „x” tengelyre. (felvisszük
 
 ![függvény transzformááció](../../assets/images/fuggveny-transzformaciok/fuggveny-eltolasa_x_menten1.gif)
 
-$$\sqrt{x+2}$$
-
 A függvény eltolása az „x” tengely mentén. Ha c>0, akkor negatív irányban,ha c<0, akkor pozitív irányban.
 
-### Függvény változójának szorzása c=-1-gyel.
+### Függvény változójának szorzása -1-gyel.
 
 Tükrözés az x tengely mentén.
+
+![függvény transzformááció](../../assets/images/fuggveny-transzformaciok/Fv_-x-300x225.jpg)
+
+$$
+\sqrt{-1 \cdot (x-2)}
+$$
 
 ### Függvény változójának szorzása egy pozitív állandóval.
 
 ![függvény transzformááció](../../assets/images/fuggveny-transzformaciok/fuggveny-nyujtasa-x-menten.gif)
-
-$$\sin{(2*x)}$$
 
 „Nyújtás” az x tengely mentén.
 
 ### Függvény változójának abszolút értéke.
 
 A függvény tükrözése az y tengellyel párhuzamos tengelyre.
+
+![függvény transzformááció](../../assets/images/fuggveny-transzformaciok/Fv_absx-300x225.jpg)
+
+$$
+\log_2 |x+2|\
+$$

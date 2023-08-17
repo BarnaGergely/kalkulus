@@ -11,6 +11,16 @@ Ennek a rakás függvény, ha át akarsz menni, fejből kell tudnod a képét.
 </figure>
 
 <figure markdown>
+  ![függvény képe]( ../../assets/images/alap-fuggvenyek/)
+  <figcaption markdown>### $|x|$</figcaption>
+</figure>
+
+<figure markdown>
+  ![abbszolútérték függvény képe]( ../../assets/images/alap-fuggvenyek/)
+  <figcaption markdown>### </figcaption>
+</figure>
+
+<figure markdown>
 ![függvény képe]( ../../assets/images/alap-fuggvenyek/1perx.svg)
   <figcaption markdown>### $\frac{1}{x}$</figcaption>
 </figure>
@@ -86,3 +96,5 @@ Ennek a rakás függvény, ha át akarsz menni, fejből kell tudnod a képét.
 </figure>
 
 </div>
+
+TODO: logarirmus

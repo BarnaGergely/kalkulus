@@ -4,6 +4,19 @@ Ennek a jegyzetnek a célja, hogy átmenjek kalkulusból. Megpróbáltam összef
 
 Nem vagyok matematikus, sőt már többször is megbuktam ebből a nyamvadt tantárgyból, nem célom tökéletesen pontos oktatóanyagot írni és nem fogok az előadás anyagával, bizonyításokkal vacakolni. Leírom emberek számára is érthetően a lényeget, ha a kettes megvan a többi nem érdekel.
 
+Rakjuk fel Németh Zoli bácsi legújabb kalkulus lemezét, aztán végjunk bele!
+
+<figure>
+    <figcaption>Kalkulus remix:</figcaption>
+    <audio
+        controls
+        src="assets\other\fooldal\Kalkulus_V0.mp3">
+            <a href="assets\other\fooldal\Kalkulus_V0.mp3">
+                Download audio
+            </a>
+    </audio>
+</figure>
+
 ## Mi az a kalkulus?
 
 A kalkulus, más néven analízis (más szakokon így hívják) **a függvény elemzés tudománya**. Lényegében annyiról fog szólni ez a félév, hogy fogunk egy undorítóan bonyolult függvényt és megpróbáljuk ábrázolni, megtalálni a nevezetes pontjait és minél több mindent elmondani róla.
