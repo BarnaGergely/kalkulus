@@ -11,13 +11,13 @@ Ennek a rakás függvény, ha át akarsz menni, fejből kell tudnod a képét.
 </figure>
 
 <figure markdown>
-  ![függvény képe]( ../../assets/images/alap-fuggvenyek/)
-  <figcaption markdown>### $|x|$</figcaption>
+  ![függvény képe]( ../../assets/images/alap-fuggvenyek/2x.svg)
+  <figcaption markdown>### 2x</figcaption>
 </figure>
 
 <figure markdown>
-  ![abbszolútérték függvény képe]( ../../assets/images/alap-fuggvenyek/)
-  <figcaption markdown>### </figcaption>
+  ![abbszolútérték függvény képe]( ../../assets/images/alap-fuggvenyek/abszolutx.svg)
+  <figcaption markdown>### |x|</figcaption>
 </figure>
 
 <figure markdown>
