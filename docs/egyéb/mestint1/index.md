@@ -4,7 +4,7 @@
 
 ## Setup
 
-Ha nincs kedved ezzel vacakolni: [**Előre beállított IDEA projekt letöltése**](../../assets/other/egyeb/mestint1/racetrack-idea-project.zip)
+Ha nincs kedved ezzel vacakolni: [**Előre beállított IDEA projekt letöltése (V11.20)**](../../assets/other/egyeb/mestint1/racetrack-idea-project.zip)
 
 1. Hozz létre egy új projektet és másold bele benne a `libs` mappába a `game_engine.jar` fájlt
 2. IDEA-ban a `File/Project Structure.../Libraries/Add New Project Library/Java` menüpontban add hozzá a `game_engine.jar` file-t
@@ -52,7 +52,7 @@ Be lehet állítani IDEA-ban, hogy egyetlen kattintással fordítsa és futtassa
 Manuális módszer:
 
 1. Jobb felül a `Run / Debug configuration` résznél hozz létre egy új Application konfigurációt
-2. Paraméterezd fel így: ![config menü](../../assets/images/mestint1/run-config.png)
+2. Paraméterezd fel így (A Modify options alatt be kell kapcsolni az Add VM options-t): ![config menü](../../assets/images/mestint1/run-config.png)
 3. A jobb felső sarokban a zöld háromszög ikonnal indul is az alkalmazás
 
 ## Debug
