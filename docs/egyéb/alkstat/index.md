@@ -54,7 +54,7 @@ Nem lesz olyan feladat ahol több féle próbával is meg lehet oldani, csak egy
 
 - **Binomiális teszt:** igaz/hamis értékek eloszlásának aránya (pl. érme dobás, győzelem/vereség)
 - **khi-négyzet próba valószínűségek tesztelésére (szerintem nem lesz ZH-ban):** Kis minta esetén Warningot dob, ilyenkor nem tudunk dönteni.
-  - `#!r chisq.test(dobasok, p = valoszinusegek)`
+  - `#!r chisq.test(table(dobasok), p = c(0.5, 0.5))`
 
 ### Eloszlás tesztelése (eloszlás egy adott fügvénnyel egyenlő e)
 
