@@ -2,11 +2,24 @@
 
 Nem vagyok matematikus, csak túl akarok már esni ezen, ha hibát találsz, nyugodtan javítsd.
 
+## Videós segédlet
+
+- Binomiális és khi-négyzet teszt valószínűségek tesztelésére.
+[ttps://youtu.be/I7CToIF09kQ](https://youtu.be/I7CToIF09kQ)
+- Normalitás tesztelése: khi-négyzet teszt illeszkedésre, Kolmogorov-Szmirnov
+teszt. [https://youtu.be/Whm8Yb6AkUA](https://youtu.be/Whm8Yb6AkUA)
+- Kétmintás Kolmogorov-Szmirnov próba. [https://youtu.be/vX0vNpMS2Jw](https://youtu.be/vX0vNpMS2Jw)
+- Khi-négyzet teszt homogenitás tesztelésére. [https://youtu.be/-zbfY7LPH9g](https://youtu.be/-zbfY7LPH9g)
+- Függetlenség tesztelése: khi-négyzet próba, Spearman- és Pearson-féle
+korrelációs teszt. [https://youtu.be/iK-XOKjc750](https://youtu.be/iK-XOKjc750)
+- Korreláció elemzése, tesztelése: [https://youtu.be/fUHiC_vxWfk](https://youtu.be/fUHiC_vxWfk)
+- Regresszió. [https://youtu.be/YYgz8LmrGr4](https://youtu.be/YYgz8LmrGr4)
+- Lineáris regresszió. (Tömörebb változat.) [https://youtu.be/kCrCLZAQeKw](https://youtu.be/kCrCLZAQeKw)
+
 ## Megoldás lépései
 
 0. Beolvasod az adatot szeparátor karakterre és tizedes vesszőre nagyon figyelve!!!
 1. Megnézed diszkrét e a minta
-    - TODO: ezt hogy kell eldönteni?
 2. Kiválasztod milyen próba kell (osszefoglalo.pdf segít)
 3. Megkeresed a segédanyagokban a próbát
 4. Lemásolod és használod
@@ -25,30 +38,42 @@ tomb = tomb[tomb > 5] # Azokat az elemeket adja vissza, amelyek nagyobbak 5-nél
 tomb = tomb[tomb == 2 || tomb == 4] # Azokat az elemeket adja vissza, amelyek 2 vagy 4
 ```
 
+## Egy mintáról hogyan tudom eldönteni, hogy diszkrét e?
+
+- **Diszkrét:** konkrét értékeket tud felvenni, pl egy ember lehet 158 centi magas, vagy 160.
+  - általában nem sok féle érték van bennük és egyértelmű kategóriákba szétvehetők, ha szöveges cucc akkor csak diszkrét lehet pl beteg nem beteg vagy valami, vagy ha 1 2 3 értékek lehetnek a változóba akkor az 3 kategória
+- **Folytonos:** intervallumon belül bármilyen értéket felvehet és nem lehet kategóriákra szétszedni mert lenne vagy 100 vagy több is, ilyen a magasság, testsúly, meg úgy általánosságba "mérhető" adatok, (általában életkor is folytonos de ha pl azt mondják hogy 10-24 , 25-36, 37-50 korú csoportokra osztják és valamelyikbe van benne akkor diszkrét, és ezt ugye bármilyen ilyen folytonossal eljátszható az a diszkretizálás ha jól tudom, ilyen nem lesz elvileg)
+
 ## Próbák
 
-### Eloszlás tesztelése
+Nem lesz olyan feladat ahol több féle próbával is meg lehet oldani, csak egy lesz helyes.
+
+![orai.jpg](orai.jpg)
+
+### Valószínűség tesztelése
 
 - **Binomiális teszt:** igaz/hamis értékek eloszlásának aránya (pl. érme dobás, győzelem/vereség)
-- **Egymintás Kolmogorov–Szmirnov-próba:** folytonos minta eloszlása megegyezik e egy elméleti eloszlással (pl. normális eloszlású e a minta)
-- **Kétmintás Kolmogorov–Szmirnov-próba:** két független folytonos minta eloszlása megegyezik e (pl. két csoport közötti különbség)
-
-### Kapcsolat erősségének vizsgálata (függetlenség, összefüggés)
-
-- **Spearman-féle kollerációteszt:** két rangsorolt változó monoton, de nem biztos hogy lineáris kapcsolat erőssége (pl. tanulási idő és eredmény)
-- **Pearson-féle korrelációteszt:** két folytonos változó közötti lineáris kapcsolat erőssége (pl. tanulási idő és eredmény)
-
-### khi-négyzet próbák
-
-Mint egy béna svájci bicska: Mindenféle diszkrét (kategorizált, pl. megyék, nemek) változók közötti kapcsolatot vizsgálhatunk vele.
-
-- **khi-négyzet próba valószínűségek tesztelésére:** Kis minta esetén Warningot dob, ilyenkor nem tudunk dönteni.
+- **khi-négyzet próba valószínűségek tesztelésére (szerintem nem lesz ZH-ban):** Kis minta esetén Warningot dob, ilyenkor nem tudunk dönteni.
   - `#!r chisq.test(dobasok, p = valoszinusegek)`
-- **khi-négyzet próba becsléses illeszkedés tesztelésére:** diszkrét, akár kategóriakra bontott minta eloszlása megfelel-e egy elméleti eloszlásnak. normalitás tesztelésére használtuk.
+
+### Eloszlás tesztelése (eloszlás egy adott fügvénnyel egyenlő e)
+
+- **FOLYTONOS | Egymintás Kolmogorov–Szmirnov-próba:** folytonos minta eloszlása megegyezik e egy elméleti eloszlással (pl. normális eloszlású e a minta)
+- **FOLYTONOS | Kétmintás Kolmogorov–Szmirnov-próba:** két független folytonos minta eloszlása megegyezik e (pl. két csoport közötti különbség)
+- **DISZKRÉT | khi-négyzet próba becsléses illeszkedés tesztelésére:** diszkrét, akár kategóriakra bontott minta eloszlása megfelel-e egy elméleti eloszlásnak. normalitás tesztelésére használtuk.
   - `#!r pearson.test(v)`
-- **khi-négyzet próba homogenitás tesztelésére:** gyakoriság táblázat segítségével teszteljük megegyezik e a két kategorizált diszkrét változó eloszlása
+
+### Hommogenitás tesztelése (azonos e két változó eloszlása)
+
+- **FOLYTONOS | Kolmogorov–Szmirnov-próba (pirsson normalitásra):** TODO: utána nézni ez mi
+- **DISZKRÉT | khi-négyzet próba homogenitás tesztelésére:** gyakoriság táblázat segítségével teszteljük megegyezik e a két kategorizált diszkrét változó eloszlása
   - `#!r chisq.test(table(adatok$adostip, adatok$tipus))`
-- **khi-négyzet próba függetlenség tesztelésére:** diszkrét kategorizált változók közötti függetlenség tesztelése
+
+### függetlenség, összefüggés (Kapcsolat erősségének vizsgálata)
+
+- **FOLYTONOS | Spearman-féle kollerációteszt:** két rangsorolt változó monoton, de nem biztos hogy lineáris kapcsolat erőssége (pl. tanulási idő és eredmény)
+- **FOLYTONOS, NUMERIKUS | Pearson-féle korrelációteszt:** két folytonos változó közötti lineáris kapcsolat erőssége (pl. tanulási idő és eredmény)
+- **DISZKRÉT | khi-négyzet próba függetlenség tesztelésére:** diszkrét kategorizált változók közötti függetlenség tesztelése
   - `#!r chisq.test(adatok$education, adatok$region)`
 
 ### Normalitás tesztelése
