@@ -50,7 +50,7 @@ Nem lesz olyan feladat ahol több féle próbával is meg lehet oldani, csak egy
 
 ![orai.jpg](orai.jpg)
 
-![probak](https://cdn.discordapp.com/attachments/611921418904666152/1313995986389045269/alkstat01.png)
+![probak](https://cdn.discordapp.com/attachments/611921418904666152/1313995986389045269/alkstat01.png?ex=675229a0&is=6750d820&hm=9ee5399669b86603e1636145df87162042e49682dd5201f875b8335d6fe3d893&)
 
 ### Valószínűség tesztelése
 
