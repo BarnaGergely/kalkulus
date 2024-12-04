@@ -69,11 +69,11 @@ Nem lesz olyan feladat ahol több féle próbával is meg lehet oldani, csak egy
 - **DISZKRÉT | khi-négyzet próba homogenitás tesztelésére:** gyakoriság táblázat segítségével teszteljük megegyezik e a két kategorizált diszkrét változó eloszlása
   - `#!r chisq.test(table(adatok$adostip, adatok$tipus))`
 
-### függetlenség, összefüggés (Kapcsolat erősségének vizsgálata)
+### Függetlenség, összefüggés tesztelése (Kapcsolat erősségének vizsgálata)
 
-- **FOLYTONOS | Spearman-féle kollerációteszt:** két rangsorolt változó monoton, de nem biztos hogy lineáris kapcsolat erőssége (pl. tanulási idő és eredmény)
-- **FOLYTONOS, NUMERIKUS | Pearson-féle korrelációteszt:** két folytonos változó közötti lineáris kapcsolat erőssége (pl. tanulási idő és eredmény)
-- **DISZKRÉT | khi-négyzet próba függetlenség tesztelésére:** diszkrét kategorizált változók közötti függetlenség tesztelése
+- **FOLYTONOS | Spearman-féle kollerációteszt:** két folytonos összetartozó minták függetlenségének tesztelése (pl. tanulási idő és eredmény)
+- **FOLYTONOS, NUMERIKUS | Pearson-féle korrelációteszt:** folytonos, összetartozó és normál eloszlású vagy nagy minták függetlenségének tesztelése (pl. tanulási idő és eredmény)
+- **DISZKRÉT | khi-négyzet próba függetlenség tesztelésére:** diszkrét változók közötti függetlenség tesztelése
   - `#!r chisq.test(adatok$education, adatok$region)`
 
 ### Normalitás tesztelése
