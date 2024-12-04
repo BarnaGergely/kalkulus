@@ -1,0 +1,2646 @@
+
+<!doctype html>
+<html lang="hu" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../assembly-intel/">
+      
+      
+      <link rel="icon" href="../../../assets/images/public/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+    
+    
+      
+        <title>ARM 32 bit Assembly - Nagy ZH Jegyzet - KaróKulus</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#arm-32-bit-assembly-nagy-zh-jegyzet" class="md-skip">
+          Kihagyás
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Élőfej">
+    <a href="../../.." title="KaróKulus" class="md-header__button md-logo" aria-label="KaróKulus" data-md-component="logo">
+      
+  <img src="../../../assets/images/public/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KaróKulus
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ARM 32 bit Assembly - Nagy ZH Jegyzet
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Keresés" placeholder="Keresés" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Keresés">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Megosztás" aria-label="Megosztás" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Törlés" aria-label="Törlés" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Keresés inicializálása
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/BarnaGergely/kalkulus" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BarnaGergely/kalkulus
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Lapok" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  KaróKulus - Kalkulus SZTE Jegyzet
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../deriv%C3%A1l%C3%A1s/" class="md-tabs__link">
+          
+  
+    
+  
+  Deriválás
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  Egyéb
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../feladatok/" class="md-tabs__link">
+          
+  
+    
+  
+  Feladatok
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../fuggv%C3%A9ny-vizsg%C3%A1lat/" class="md-tabs__link">
+          
+  
+    
+  
+  Fuggvény vizsgálat
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../hat%C3%A1r%C3%A9rt%C3%A9k/" class="md-tabs__link">
+          
+  
+    
+  
+  Határérték
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../integr%C3%A1l%C3%A1s/" class="md-tabs__link">
+          
+  
+    
+  
+  Integrálás
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ism%C3%A9tl%C3%A9s/" class="md-tabs__link">
+          
+  
+    
+  
+  Ismétlés
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigáció" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="KaróKulus" class="md-nav__button md-logo" aria-label="KaróKulus" data-md-component="logo">
+      
+  <img src="../../../assets/images/public/logo.svg" alt="logo">
+
+    </a>
+    KaróKulus
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/BarnaGergely/kalkulus" title="Főoldalra ugrás" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BarnaGergely/kalkulus
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KaróKulus - Kalkulus SZTE Jegyzet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../deriv%C3%A1l%C3%A1s/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Deriválás
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Deriválás
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Egyéb
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Egyéb
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../alkstat/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Alkstat
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Alkstat
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../alkstat/2Z-ooriai-vazlat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ZH2 előtti gyakorló óra jegyzet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Assembly
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Assembly
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ARM 32 bit Assembly - Nagy ZH Jegyzet
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ARM 32 bit Assembly - Nagy ZH Jegyzet
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#alap-assembly-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alap Assembly program
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regiszterek" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regiszterek
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regiszterek">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specialis-regiszterek" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speciális regiszterek:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utasitasok" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utasítások
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utasítások">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adatmozgatas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adatmozgatás
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adatmozgatás">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mov" class="md-nav__link">
+    <span class="md-ellipsis">
+      mov
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ldr-load-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      ldr (LoaD Register)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indirekt-cimzes-tombok" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indirekt címzés (tömbök)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#str-store-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      str (STore Register)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verem-kezeles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verem kezelés
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aritmetika" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aritmetika
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aritmetika">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#osszeadas-add-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Összeadás + add (Addition)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kivonas-sub-subtraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kivonás - sub (subtraction)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#szorzas-mul-multiply" class="md-nav__link">
+    <span class="md-ellipsis">
+      Szorzás * mul (Multiply)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elojeles-osztas-sdiv-divizion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Előjeles Osztás - sdiv (Divizion)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fuggvenyek-keszitese" class="md-nav__link">
+    <span class="md-ellipsis">
+      Függvények készítése
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Függvények készítése">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#egyszeru-pelda-fuggveny" class="md-nav__link">
+    <span class="md-ellipsis">
+      Egyszerű példa függvény:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ugras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ugrás
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ugrás">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vegtelen-ciklus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vegtelen ciklus:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#felteteles-ugras-if-elagazas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feltételes ugrás (if elágazás)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feltételes ugrás (if elágazás)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-elagazas-peda" class="md-nav__link">
+    <span class="md-ellipsis">
+      If elágazás péda
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciklusok" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciklusok
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nagy-zh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nagy ZH
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gyakorlo-nagy-zh-megoldasa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gyakorló nagy ZH megoldása
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly-intel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly Intel X86 Linux - 2.ZH Jegyzet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../mestint1/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Mestint1
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Mestint1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../prognyelvek/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Prognyelvek
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Prognyelvek
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prognyelvek/nagy-ZH-jegyzet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programozási nyelvek nagy ZH jegyzet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prognyelvek/vizsga-jegyzet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programozási nyelvek vizsga Jegyzet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../feladatok/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Feladatok
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Feladatok
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../fuggv%C3%A9ny-vizsg%C3%A1lat/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Fuggvény vizsgálat
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Fuggvény vizsgálat
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../hat%C3%A1r%C3%A9rt%C3%A9k/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Határérték
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Határérték
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hat%C3%A1r%C3%A9rt%C3%A9k/folytonoss%C3%A1g/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folytonosság
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hat%C3%A1r%C3%A9rt%C3%A9k/nevezetes-hat%C3%A1r%C3%A9rt%C3%A9kek/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nevezetes határértékek
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../integr%C3%A1l%C3%A1s/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Integrálás
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Integrálás
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ism%C3%A9tl%C3%A9s/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Ismétlés
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Ismétlés
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ism%C3%A9tl%C3%A9s/egyenletek/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Egyenletek
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ism%C3%A9tl%C3%A9s/logaritmus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logaritmus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ism%C3%A9tl%C3%A9s/sz%C3%B6gf%C3%BCggv%C3%A9nyek/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Szögfüggvények
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ism%C3%A9tl%C3%A9s/t%C3%B6rtek-%C3%A9s-hatv%C3%A1nyoz%C3%A1s/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Törtek és hatványozás
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ism%C3%A9tl%C3%A9s/f%C3%BCggv%C3%A9nyek/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Függvények
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8_6" id="__nav_8_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6">
+            <span class="md-nav__icon md-icon"></span>
+            Függvények
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ism%C3%A9tl%C3%A9s/f%C3%BCggv%C3%A9nyek/alap-f%C3%BCggv%C3%A9nyek-k%C3%A9pe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alap függvények képe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ism%C3%A9tl%C3%A9s/f%C3%BCggv%C3%A9nyek/f%C3%BCggv%C3%A9ny-transzform%C3%A1ci%C3%B3k/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Függvény transzformációk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#alap-assembly-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alap Assembly program
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regiszterek" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regiszterek
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regiszterek">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specialis-regiszterek" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speciális regiszterek:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utasitasok" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utasítások
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utasítások">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adatmozgatas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adatmozgatás
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adatmozgatás">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mov" class="md-nav__link">
+    <span class="md-ellipsis">
+      mov
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ldr-load-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      ldr (LoaD Register)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indirekt-cimzes-tombok" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indirekt címzés (tömbök)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#str-store-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      str (STore Register)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verem-kezeles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verem kezelés
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aritmetika" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aritmetika
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aritmetika">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#osszeadas-add-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Összeadás + add (Addition)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kivonas-sub-subtraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kivonás - sub (subtraction)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#szorzas-mul-multiply" class="md-nav__link">
+    <span class="md-ellipsis">
+      Szorzás * mul (Multiply)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elojeles-osztas-sdiv-divizion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Előjeles Osztás - sdiv (Divizion)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fuggvenyek-keszitese" class="md-nav__link">
+    <span class="md-ellipsis">
+      Függvények készítése
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Függvények készítése">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#egyszeru-pelda-fuggveny" class="md-nav__link">
+    <span class="md-ellipsis">
+      Egyszerű példa függvény:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ugras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ugrás
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ugrás">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vegtelen-ciklus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vegtelen ciklus:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#felteteles-ugras-if-elagazas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feltételes ugrás (if elágazás)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feltételes ugrás (if elágazás)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-elagazas-peda" class="md-nav__link">
+    <span class="md-ellipsis">
+      If elágazás péda
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciklusok" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciklusok
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nagy-zh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nagy ZH
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gyakorlo-nagy-zh-megoldasa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gyakorló nagy ZH megoldása
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/BarnaGergely/kalkulus/edit/main/docs/egyéb/assembly/assembly-arm.md" title="Oldal szerkesztése" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="arm-32-bit-assembly-nagy-zh-jegyzet">ARM 32 bit Assembly - Nagy ZH Jegyzet<a class="headerlink" href="#arm-32-bit-assembly-nagy-zh-jegyzet" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Nagyon hasonlít az Intel Assembly-re, ezért csak különbségeket írom le. <a href="../assembly-intel/">Intel Assembly Jegyzet</a></li>
+<li>Egyszerűbb mint az Intel, ez használnám a nagy ZH-n is.</li>
+</ul>
+<h2 id="alap-assembly-program">Alap Assembly program<a class="headerlink" href="#alap-assembly-program" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="na">.syntax</span><span class="w"> </span><span class="no">unified</span><span class="w">  </span><span class="cm">/* Szintaxis meghatározás */</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="na">.cpu</span><span class="w"> </span><span class="no">cortex-a7</span><span class="w">  </span><span class="cm">/* Processzor megadása, az osztáshoz kell */</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cm">/* címke, ugyan az mint Intel-en */</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nl">HELLO:</span><span class="w"> </span><span class="na">.asciz</span><span class="w"> </span><span class="s">&quot;Hello World\n&quot;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="cm">/* Data szekció */</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="na">.data</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="cm">/* Program szekció */</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="na">.text</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="cm">/* main függvény, ugyan az mint Intel-en */</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="na">.global</span><span class="w"> </span><span class="no">main</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nl">main:</span>
+</code></pre></div>
+<h2 id="regiszterek">Regiszterek<a class="headerlink" href="#regiszterek" title="Permanent link">&para;</a></h2>
+<p>Rengeteg regiszterünk van, ami nagyon sokat könnyít a programozásban. nevük simán r0, r1, r2, r3, ... ,r14</p>
+<p>r0-tól r10-ig általános célú regiszterek, arra használod amire csak akarod, mint az eax, ebx, ecx és edx Intel-en. A többi speciális.</p>
+<h3 id="specialis-regiszterek">Speciális regiszterek:<a class="headerlink" href="#specialis-regiszterek" title="Permanent link">&para;</a></h3>
+<ul>
+<li>r13-as regisztert elnevezték sp-nek (Stack Pointer). Ez mutatja a verem tetejét</li>
+<li>lr (r14) - Link Register, ha hívsz egy függvényt, ez tárolja honnan lett meghívva, ide tér vissza a függvény végén</li>
+<li>Van még pár, de ezekre sincs szükség a ZH-hoz, ezért nem untatlak vele</li>
+</ul>
+<h2 id="utasitasok">Utasítások<a class="headerlink" href="#utasitasok" title="Permanent link">&para;</a></h2>
+<h3 id="adatmozgatas">Adatmozgatás<a class="headerlink" href="#adatmozgatas" title="Permanent link">&para;</a></h3>
+<p>Ez kicsit máshogy működik, mint Intel-en.</p>
+<h4 id="mov">mov<a class="headerlink" href="#mov" title="Permanent link">&para;</a></h4>
+<p>Van mov, de nem lehet vele bármit bárhova lemásolni. Csakis regiszterbe lehet vele másolni egy másik regiszter értékét vagy egy 0-256 közötti (8 bites) számot.</p>
+<ul>
+<li><code class="highlight"><span class="nf">mov</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r1</span></code> - r0 = r1</li>
+<li><code class="highlight"><span class="nf">mov</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="mi">#2</span></code> - konstans számok elé #-et kell írni</li>
+</ul>
+<h4 id="ldr-load-register">ldr (LoaD Register)<a class="headerlink" href="#ldr-load-register" title="Permanent link">&para;</a></h4>
+<p>Ezzel tudjuk egy címke (tömb) címét betölteni egy regiszterbe. (mindjárt megérted ennek mi értelme) És egy regiszterben lévő címről tudunk vele adatot betölteni egy másik regiszterbe</p>
+<ul>
+<li><code class="highlight"><span class="nf">ldr</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="err">=</span><span class="no">CIMKE</span></code> - Címkék elé = jelet kell írni , CIMKE nevű címkének a címének betöltése az r0 regiszterbe</li>
+<li><code class="highlight"><span class="nf">ldr</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r0</span><span class="p">]</span></code> - az r0 regiszterben található memóriacímen lévő adat betöltése az r1 regiszterbe (indirekt címzés)</li>
+<li><code class="highlight"><span class="nf">ldr</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="err">=</span><span class="mi">5</span></code> - ezzel is lehet kis számokat beállítani r0 = 5</li>
+</ul>
+<h4 id="indirekt-cimzes-tombok">Indirekt címzés (tömbök)<a class="headerlink" href="#indirekt-cimzes-tombok" title="Permanent link">&para;</a></h4>
+<p>Nem adhatunk meg címkéket a címzésben, csakis regisztereket és konstansokat.</p>
+<ul>
+<li><code class="highlight"><span class="err">[</span><span class="nf">r0</span><span class="p">]</span></code> - az r0 regiszterben lévő memória címen lévő adat elérése</li>
+</ul>
+<p>Szóval ahhoz hogy egy tömb elemeit be tudjuk járni, előbb be kell töltenünk a címét egy regiszterbe.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="na">.data</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nl">TOMB:</span><span class="w"> </span><span class="na">.int</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nl">DOLOG:</span><span class="w"> </span><span class="na">.int</span><span class="w"> </span><span class="mi">11</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="na">.text</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="err">=</span><span class="no">TOMB</span><span class="w">       </span><span class="cm">/* r0 regiszterbe betöltjük a TOMB nevű címke címét */</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r0</span><span class="p">]</span><span class="w">        </span><span class="cm">/* Az r1 regiszterbe betöltjük az r0-ban lévő memóriacímen lévő adatot a memóriából (jelen esetben ez a TOMB 1. eleme) */</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="mi">#1</span><span class="p">*</span><span class="mi">4</span><span class="p">]</span><span class="w">  </span><span class="cm">/* TOMB 2. elemének betöltése r2-be */</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r3</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="mi">#2</span><span class="p">*</span><span class="mi">4</span><span class="p">]</span><span class="w">  </span><span class="cm">/* TOMB 3. elemének betöltése r3-be */</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="c1">// r7 = TOMB[r6] -- TOMB r6 indexen lévő elemének elérése</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">r4</span><span class="p">,</span><span class="w"> </span><span class="mi">#4</span><span class="w">          </span><span class="c1">// Mivel nem lehet a szorzásban konstans, betöltjük egy regiszterbe a 4-et (4 bájt-os számokból áll a tömb)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nf">mul</span><span class="w"> </span><span class="no">r5</span><span class="p">,</span><span class="w"> </span><span class="no">r6</span><span class="p">,</span><span class="w"> </span><span class="no">r4</span><span class="w">      </span><span class="c1">// r5 = r6*4 - Mivel nem lehet a címzésben regisztert szorozni konstanssal, külön kell megcsinálni</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r7</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r5</span><span class="p">]</span><span class="w">    </span><span class="c1">// r7-be töltöm be a számot, amit ugye az előbb kiszámolt eltolással (r5) kapok meg</span>
+</code></pre></div>
+<h4 id="str-store-register">str (STore Register)<a class="headerlink" href="#str-store-register" title="Permanent link">&para;</a></h4>
+<p>Adat mentése regiszterből memóriacímre.</p>
+<ul>
+<li><code class="highlight"><span class="nf">ldr</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r0</span><span class="p">]</span></code> - az r0 regiszterben található memóriacímre írja ki az r1 tartalmát</li>
+</ul>
+<h3 id="verem-kezeles">Verem kezelés<a class="headerlink" href="#verem-kezeles" title="Permanent link">&para;</a></h3>
+<p>Ugyan úgy működik mint Intelen, csak a szinaxis kicsit más</p>
+<ul>
+<li><code class="highlight"><span class="nf">push</span><span class="w"> </span><span class="p">{</span><span class="no">r0</span><span class="p">}</span></code> - r0 lemetése</li>
+<li><code class="highlight"><span class="nf">push</span><span class="w"> </span><span class="p">{</span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r1</span><span class="p">}</span></code> - r0 és r1 lemetése</li>
+<li><code class="highlight"><span class="nf">push</span><span class="w"> </span><span class="p">{</span><span class="no">r0-r5</span><span class="p">}</span></code> - r0-tól és r5-ig minden regiszter lemetése</li>
+<li>
+<p><code class="highlight"><span class="nf">push</span><span class="w"> </span><span class="p">{</span><span class="no">r0-r5</span><span class="p">,</span><span class="w"> </span><span class="no">r8</span><span class="p">}</span></code> - r0-tól és r5-ig minden regiszter lemetése és r8 lementése</p>
+</li>
+<li>
+<p><code class="highlight"><span class="nf">pop</span><span class="w"> </span><span class="p">{</span><span class="no">r0</span><span class="p">}</span></code> - verem tetején lévő elem vissza töltése r0-ba, minden ugyan úgy működik mint push-nál.</p>
+</li>
+</ul>
+<h2 id="aritmetika">Aritmetika<a class="headerlink" href="#aritmetika" title="Permanent link">&para;</a></h2>
+<p>Csakis regiszterekkel és konstansokkal végezhetünk műveleteket, cserébe sokkal egyszerűbb használni őket.</p>
+<h3 id="osszeadas-add-addition">Összeadás + add (Addition)<a class="headerlink" href="#osszeadas-add-addition" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nf">mov</span><span class="w"> </span><span class="no">r2</span><span class="p">,</span><span class="w"> </span><span class="mi">#2</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nf">mov</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="mi">#4</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nf">add</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="no">r2</span><span class="w">  </span><span class="cm">/* r0 = r1 + r2 */</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nf">add</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r2</span><span class="w">  </span><span class="cm">/* r0 = r0 + r2 */</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nf">add</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="mi">#1</span><span class="w">  </span><span class="cm">/* r0 = r0 + 1 */</span>
+</code></pre></div>
+<h3 id="kivonas-sub-subtraction">Kivonás - sub (subtraction)<a class="headerlink" href="#kivonas-sub-subtraction" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nf">mov</span><span class="w"> </span><span class="no">r2</span><span class="p">,</span><span class="w"> </span><span class="mi">#2</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nf">mov</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="mi">#4</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nf">sub</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="no">r2</span><span class="w">  </span><span class="cm">/* r0 = r1 - r2 */</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nf">sub</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r2</span><span class="w">  </span><span class="cm">/* r0 = r0 - r2 */</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nf">sub</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="mi">#1</span><span class="w">  </span><span class="cm">/* r0 = r0 - 1 */</span>
+</code></pre></div>
+<h3 id="szorzas-mul-multiply">Szorzás * mul (Multiply)<a class="headerlink" href="#szorzas-mul-multiply" title="Permanent link">&para;</a></h3>
+<p>Nem lehet konstanssal szorozni, csak regiszterrel.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nf">mov</span><span class="w"> </span><span class="no">r2</span><span class="p">,</span><span class="w"> </span><span class="mi">#2</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nf">mov</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="mi">#4</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nf">mul</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="no">r2</span><span class="w">  </span><span class="cm">/* r0 = r1 * r2 */</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nf">mul</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r2</span><span class="w">  </span><span class="cm">/* r0 = r0 * r2 */</span>
+</code></pre></div>
+<h3 id="elojeles-osztas-sdiv-divizion">Előjeles Osztás - sdiv (Divizion)<a class="headerlink" href="#elojeles-osztas-sdiv-divizion" title="Permanent link">&para;</a></h3>
+<p>Ahhoz hogy az osztás működjön meg kell adni milyen procit használunk: <code class="highlight"><span class="na">.cpu</span><span class="w"> </span><span class="no">cortex-a7</span></code>. Nem lehet konstanssal osztani, csak regiszterrel.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nf">mov</span><span class="w"> </span><span class="no">r2</span><span class="p">,</span><span class="w"> </span><span class="mi">#2</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nf">mov</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="mi">#4</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nf">div</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="no">r2</span><span class="w">  </span><span class="cm">/* r0 = r1 / r2 */</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nf">div</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r2</span><span class="w">  </span><span class="cm">/* r0 = r0 / r2 */</span>
+</code></pre></div>
+<p>előjel néküli osztás: <code class="highlight"><span class="nf">udiv</span></code> - ugyan úgy működik</p>
+<h2 id="fuggvenyek-keszitese">Függvények készítése<a class="headerlink" href="#fuggvenyek-keszitese" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Egyszerűen 4 paramétert adhatunk át egy függvénynek, ezeket a meghívása előtt az r0-r3 regiszterekbe kell másolni. Lehetne még stack-en is átadni paramétereket, de ez nem kell a ZH-hoz</li>
+<li>A visszatérési értéket az r0-ba kell rakni, mielőtt véget ér a függvény, így sokkal könyebb őket a függvényben elérni.</li>
+<li>Itt is van cedcl (regiszter mentés és vissza töltés), csak ARM eljáráshívási konvenciónak hívják. Sokkal egyszerűbb, egy utasítás az elején (<code class="highlight"><span class="nf">push</span><span class="w"> </span><span class="p">{</span><span class="no">r4-r11</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="no">lr</span><span class="p">}</span></code>) és egy a végén (<code>`#!GAS pop {r4-r11 , pc}</code>).</li>
+<li>Itt nincs ret, simán az epilógus a függvény vége</li>
+</ul>
+<p>Függvény hívás: <code class="highlight"><span class="nf">bl</span><span class="w"> </span><span class="no">fuggvenynev</span></code></p>
+<h3 id="egyszeru-pelda-fuggveny">Egyszerű példa függvény:<a class="headerlink" href="#egyszeru-pelda-fuggveny" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cm">/* breaksystem nevű függvény kezdete */</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="na">.global</span><span class="w"> </span><span class="no">breaksystem</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nl">breaksystem:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="cm">/* cedcl szerinti függvény prológus */</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="p">{</span><span class="no">r4</span><span class="w"> </span><span class="p">-</span><span class="no">r11</span><span class="p">,</span><span class="w"> </span><span class="no">lr</span><span class="p">}</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="cm">/* r0-r3 regiszterekben vannak a paraméterek */</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="mi">#3</span><span class="w"> </span><span class="cm">/*Visszatérési érték beállítása 3-ra*/</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="cm">/* epilógus, függvény vége */</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="nf">pop</span><span class="w"> </span><span class="p">{</span><span class="no">r4</span><span class="w"> </span><span class="p">-</span><span class="no">r11</span><span class="p">,</span><span class="w"> </span><span class="no">pc</span><span class="p">}</span>
+</code></pre></div>
+<h2 id="ugras">Ugrás<a class="headerlink" href="#ugras" title="Permanent link">&para;</a></h2>
+<p>Ugrálhat itt is címkékre, akinek nincs jobb dolga a <code class="highlight"><span class="nf">b</span><span class="w"> </span><span class="no">fuggvenyneve</span></code> és a <code class="highlight"><span class="nf">bl</span><span class="w"> </span><span class="no">fuggvenyneve</span></code> utasításokkal.</p>
+<h3 id="vegtelen-ciklus">Vegtelen ciklus:<a class="headerlink" href="#vegtelen-ciklus" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nl">kezdet:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1">// program sorai</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nf">b</span><span class="w"> </span><span class="no">kezdet</span>
+</code></pre></div>
+<h3 id="felteteles-ugras-if-elagazas">Feltételes ugrás (if elágazás)<a class="headerlink" href="#felteteles-ugras-if-elagazas" title="Permanent link">&para;</a></h3>
+<p>Csak hogy ne unatkozz, a szintaxis itt is kicsit változott, de ugyan úgy működik: elösször megadjuk miket hasonlítunk össze, utána hogy milyen relációs jel legyen közöttük és hova ugorjon ha igaz</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cm">/* (r0 = r1) */</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nf">cmp</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r1</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nf">beq</span><span class="w"> </span><span class="no">igaz</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="cm">/* (r0 &lt;= 6) */</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nf">cmp</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="mi">#6</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nf">ble</span><span class="w"> </span><span class="no">igaz</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Relació</th>
+<th>Művelet</th>
+<th>Jelentés</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>beq</td>
+<td>Branch Equal</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>bne</td>
+<td>Branch Not Equal</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>blt</td>
+<td>Branch Lover Then</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>ble</td>
+<td>Branch Lover or Equal</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>bgt</td>
+<td>Branch Greater Than</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>bge</td>
+<td>Branch Greater or Equal</td>
+</tr>
+</tbody>
+</table>
+<h4 id="if-elagazas-peda">If elágazás péda<a class="headerlink" href="#if-elagazas-peda" title="Permanent link">&para;</a></h4>
+<p>Pont mint Intel-en, negálással lehet hatékonyan megvalósítani.</p>
+<p><code class="highlight"><span class="k">if</span><span class="p">(</span><span class="n">r5</span><span class="o">&lt;=</span><span class="mi">18</span><span class="p">){}</span><span class="k">else</span><span class="p">{}</span></code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nf">cmp</span><span class="w"> </span><span class="no">r5</span><span class="p">,</span><span class="w"> </span><span class="mi">#18</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nf">ble</span><span class="w"> </span><span class="no">else</span><span class="w">   </span><span class="cm">/* ha (r5&gt;18), ugorjunk az else címkére, egyébként menjünk tovább*/</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="cm">/* ha igaz az eredeti feltétel, megy simán tovább a program  és eljut ide*/</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="nf">b</span><span class="w"> </span><span class="no">endif</span><span class="w"> </span><span class="cm">/* hamis rész átugrása */</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nl">else:</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="cm">/* ha hamis az eredeti feltétel, átugorja az igaz részt */</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="nl">endif:</span>
+</code></pre></div>
+<h2 id="ciklusok">Ciklusok<a class="headerlink" href="#ciklusok" title="Permanent link">&para;</a></h2>
+<p><code class="highlight"><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){}</span></code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nf">mov</span><span class="w"> </span><span class="no">r5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w">      </span><span class="c1">// legyen r5 az i valtozo</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nl">for:</span><span class="w">  </span><span class="c1">// for ciklus kezdetét jelző cimke</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="c1">// kilepesi feltetel, ha ez teljesul, lepjunk ki a for-bol</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="nf">cmp</span><span class="w"> </span><span class="no">r5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w">        </span><span class="c1">// ha r5 &gt;= 5, az az ha az aktualis elem a tomb 5. egyben utolsó eleme,</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="nf">bge</span><span class="w"> </span><span class="no">forend</span><span class="w">       </span><span class="c1">// akkor ugorjunk a forend cimkere</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="c1">// kod helye, amit a for-ban akarunk futtatni</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">r5</span><span class="p">,</span><span class="w"> </span><span class="no">r5</span><span class="p">,</span><span class="w"> </span><span class="mi">#1</span><span class="w">   </span><span class="c1">// i = i + 1 (nincs arm-en ++)</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="nf">b</span><span class="w"> </span><span class="no">for</span><span class="w">       </span><span class="c1">// ha ide ert a program vissza ugrik a for elejere</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="nl">forend:</span><span class="w">     </span><span class="c1">// for ciklus vege</span>
+</code></pre></div>
+<h2 id="nagy-zh">Nagy ZH<a class="headerlink" href="#nagy-zh" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Szinte pont ugyan olyan volt 2023-ban mit a gyakorló ZH<ul>
+<li>Egy függvényt kellett írni, ami bejár egy paraméterben megadott input tömböt</li>
+<li>valamilyen feltétel szerint átmásolja néhány elemét a paraméterben megadott output tömbbe</li>
+<li>és annyival tér vissza amennyi elemet átmásolt</li>
+<li>Szóval kell hozzá: függvény hívás (cedcl), if elágazás, for ciklus, regiszter másolás és némi matek</li>
+</ul>
+</li>
+<li>Nem lehet javítani, ezért nagyon készülj fel rá</li>
+<li>Bírón lesz írva</li>
+<li>Lehet használni a hivatalos gyak jegyzetet, amit ha ismersz, hatalmas segítség:<ul>
+<li>hetedik gyak jegyzet végén van komplett tömb elemeit for ciklussal másoló ARM függvény!</li>
+</ul>
+</li>
+<li>Lehet használni VScode-ot, amihez fel lehet rakni arm és intel syntax highlight bővítményt, az is sokat segít</li>
+</ul>
+<h2 id="gyakorlo-nagy-zh-megoldasa">Gyakorló nagy ZH megoldása<a class="headerlink" href="#gyakorlo-nagy-zh-megoldasa" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../assets/other/egyeb/assembly/gyakorlo-zh/feladat.pdf">feladat.pdf</a></li>
+<li><a href="../assets/other/egyeb/assembly/gyakorlo-zh/minta.zip">minta.zip</a></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="na">.syntax</span><span class="w"> </span><span class="no">unified</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="na">.cpu</span><span class="w"> </span><span class="no">cortex-a7</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="na">.data</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="c1">// Előre megadott nagy konstans számok mentése a memóriába, mivel túl nagyon konstans-nak</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="nl">SZAM1:</span><span class="w"> </span><span class="na">.int</span><span class="w"> </span><span class="mi">0xbadc0ffe</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="nl">SZAM2:</span><span class="w"> </span><span class="na">.int</span><span class="w"> </span><span class="mi">0x11223344</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="nl">SZAM3:</span><span class="w"> </span><span class="na">.int</span><span class="w"> </span><span class="mi">-2048</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="na">.text</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="cm">/*</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="cm">r0 - input</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="cm">r1 - op</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="cm">r2 - opArg</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="cm">r3 - output</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="cm">r4 - counter</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="cm">r5 - idx</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="cm">r6 - value, input[idx]</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="cm">r7 - 4</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="cm">r8 - címzés eltolás</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="cm">r9 - 0x11223344</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="cm">*/</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="na">.global</span><span class="w"> </span><span class="no">feladatX</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="nl">feladatX:</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="w">    </span><span class="c1">// prológus</span>
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="p">{</span><span class="no">r4-r11</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="no">lr</span><span class="p">}</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">r7</span><span class="p">,</span><span class="w"> </span><span class="mi">#4</span><span class="w">  </span><span class="c1">// r7 = 4</span>
+<a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">r4</span><span class="p">,</span><span class="w"> </span><span class="mi">#0</span><span class="w">  </span><span class="c1">// counter = 0</span>
+<a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a>
+<a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a><span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">r5</span><span class="p">,</span><span class="w"> </span><span class="mi">#0</span><span class="w">  </span><span class="c1">// idx = 0</span>
+<a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span class="w">    </span><span class="nl">for:</span>
+<a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span class="w">        </span><span class="c1">// for ciklus kilépési feltétele</span>
+<a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a><span class="w">        </span><span class="nf">mul</span><span class="w"> </span><span class="no">r8</span><span class="p">,</span><span class="w"> </span><span class="no">r5</span><span class="p">,</span><span class="w"> </span><span class="no">r7</span><span class="w">  </span><span class="c1">// r8 = idx * 4</span>
+<a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a><span class="w">        </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r6</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r8</span><span class="p">]</span><span class="w"> </span><span class="c1">// r6 = input[idx], value</span>
+<a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="w">        </span><span class="nf">cmp</span><span class="w"> </span><span class="no">r6</span><span class="p">,</span><span class="w"> </span><span class="mi">#0</span>
+<a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="w">        </span><span class="nf">beq</span><span class="w"> </span><span class="no">endfor</span>
+<a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a>
+<a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a><span class="w">        </span><span class="c1">// if (op == 0xbadc0ffe)</span>
+<a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a><span class="w">        </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r10</span><span class="p">,</span><span class="w"> </span><span class="err">=</span><span class="no">SZAM1</span>
+<a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a><span class="w">        </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r10</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r10</span><span class="p">]</span>
+<a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a><span class="w">        </span><span class="nf">cmp</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="no">r10</span>
+<a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a><span class="w">        </span><span class="nf">bne</span><span class="w"> </span><span class="no">elseif</span>
+<a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a>
+<a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a><span class="w">            </span><span class="c1">// if (value % opArg != 0)</span>
+<a id="__codelineno-11-49" name="__codelineno-11-49" href="#__codelineno-11-49"></a><span class="w">            </span><span class="nf">sdiv</span><span class="w"> </span><span class="no">r11</span><span class="p">,</span><span class="w"> </span><span class="no">r6</span><span class="p">,</span><span class="w"> </span><span class="no">r2</span><span class="w">    </span><span class="c1">// r11 = value/opArg</span>
+<a id="__codelineno-11-50" name="__codelineno-11-50" href="#__codelineno-11-50"></a><span class="w">            </span><span class="nf">mul</span><span class="w"> </span><span class="no">r11</span><span class="p">,</span><span class="w"> </span><span class="no">r11</span><span class="p">,</span><span class="w"> </span><span class="no">r2</span><span class="w">    </span><span class="c1">// r11 = (value/opArg)*opArg</span>
+<a id="__codelineno-11-51" name="__codelineno-11-51" href="#__codelineno-11-51"></a><span class="w">            </span><span class="nf">sub</span><span class="w"> </span><span class="no">r11</span><span class="p">,</span><span class="w"> </span><span class="no">r6</span><span class="p">,</span><span class="w"> </span><span class="no">r11</span><span class="w">    </span><span class="c1">// r11= value-((value/opArg)*opArg) -&gt; így kell kiszámolni a maradékot ;)</span>
+<a id="__codelineno-11-52" name="__codelineno-11-52" href="#__codelineno-11-52"></a><span class="w">            </span><span class="nf">cmp</span><span class="w"> </span><span class="no">r11</span><span class="p">,</span><span class="w"> </span><span class="mi">#0</span>
+<a id="__codelineno-11-53" name="__codelineno-11-53" href="#__codelineno-11-53"></a><span class="w">            </span><span class="nf">beq</span><span class="w"> </span><span class="no">if11end</span>
+<a id="__codelineno-11-54" name="__codelineno-11-54" href="#__codelineno-11-54"></a><span class="w">                </span><span class="nf">mul</span><span class="w"> </span><span class="no">r8</span><span class="p">,</span><span class="w"> </span><span class="no">r4</span><span class="p">,</span><span class="w"> </span><span class="no">r7</span><span class="w">      </span><span class="c1">// r8 = counter * 4</span>
+<a id="__codelineno-11-55" name="__codelineno-11-55" href="#__codelineno-11-55"></a><span class="w">                </span><span class="nf">str</span><span class="w"> </span><span class="no">r6</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r3</span><span class="p">,</span><span class="w"> </span><span class="no">r8</span><span class="p">]</span><span class="w">    </span><span class="c1">// output[counter] = value</span>
+<a id="__codelineno-11-56" name="__codelineno-11-56" href="#__codelineno-11-56"></a>
+<a id="__codelineno-11-57" name="__codelineno-11-57" href="#__codelineno-11-57"></a><span class="w">                </span><span class="nf">add</span><span class="w"> </span><span class="no">r4</span><span class="p">,</span><span class="w"> </span><span class="no">r4</span><span class="p">,</span><span class="w"> </span><span class="mi">#1</span><span class="w">      </span><span class="c1">// counter++</span>
+<a id="__codelineno-11-58" name="__codelineno-11-58" href="#__codelineno-11-58"></a><span class="w">            </span><span class="nl">if11end:</span>
+<a id="__codelineno-11-59" name="__codelineno-11-59" href="#__codelineno-11-59"></a><span class="w">            </span><span class="nf">b</span><span class="w"> </span><span class="no">if1end</span>
+<a id="__codelineno-11-60" name="__codelineno-11-60" href="#__codelineno-11-60"></a>
+<a id="__codelineno-11-61" name="__codelineno-11-61" href="#__codelineno-11-61"></a><span class="w">        </span><span class="c1">// else if (op == 0x11223344)</span>
+<a id="__codelineno-11-62" name="__codelineno-11-62" href="#__codelineno-11-62"></a><span class="w">        </span><span class="nl">elseif:</span>
+<a id="__codelineno-11-63" name="__codelineno-11-63" href="#__codelineno-11-63"></a><span class="w">        </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r10</span><span class="p">,</span><span class="w"> </span><span class="err">=</span><span class="no">SZAM2</span>
+<a id="__codelineno-11-64" name="__codelineno-11-64" href="#__codelineno-11-64"></a><span class="w">        </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r10</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r10</span><span class="p">]</span>
+<a id="__codelineno-11-65" name="__codelineno-11-65" href="#__codelineno-11-65"></a><span class="w">        </span><span class="nf">cmp</span><span class="w"> </span><span class="no">r1</span><span class="p">,</span><span class="w"> </span><span class="no">r10</span>
+<a id="__codelineno-11-66" name="__codelineno-11-66" href="#__codelineno-11-66"></a><span class="w">        </span><span class="nf">bne</span><span class="w"> </span><span class="no">else</span>
+<a id="__codelineno-11-67" name="__codelineno-11-67" href="#__codelineno-11-67"></a>
+<a id="__codelineno-11-68" name="__codelineno-11-68" href="#__codelineno-11-68"></a><span class="w">            </span><span class="c1">// if (value / 3 &lt; opArg)</span>
+<a id="__codelineno-11-69" name="__codelineno-11-69" href="#__codelineno-11-69"></a><span class="w">            </span><span class="nf">mov</span><span class="w"> </span><span class="no">r10</span><span class="p">,</span><span class="w"> </span><span class="mi">#3</span>
+<a id="__codelineno-11-70" name="__codelineno-11-70" href="#__codelineno-11-70"></a><span class="w">            </span><span class="nf">sdiv</span><span class="w"> </span><span class="no">r11</span><span class="p">,</span><span class="w"> </span><span class="no">r6</span><span class="p">,</span><span class="w"> </span><span class="no">r10</span><span class="w">  </span><span class="c1">// r11 = value/3</span>
+<a id="__codelineno-11-71" name="__codelineno-11-71" href="#__codelineno-11-71"></a><span class="w">            </span><span class="nf">cmp</span><span class="w"> </span><span class="no">r11</span><span class="p">,</span><span class="w"> </span><span class="no">r2</span>
+<a id="__codelineno-11-72" name="__codelineno-11-72" href="#__codelineno-11-72"></a><span class="w">            </span><span class="nf">bge</span><span class="w"> </span><span class="no">if2end</span>
+<a id="__codelineno-11-73" name="__codelineno-11-73" href="#__codelineno-11-73"></a><span class="w">                </span><span class="nf">mul</span><span class="w"> </span><span class="no">r8</span><span class="p">,</span><span class="w"> </span><span class="no">r4</span><span class="p">,</span><span class="w"> </span><span class="no">r7</span><span class="w">      </span><span class="c1">// r8 = counter * 4</span>
+<a id="__codelineno-11-74" name="__codelineno-11-74" href="#__codelineno-11-74"></a><span class="w">                </span><span class="nf">str</span><span class="w"> </span><span class="no">r6</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r3</span><span class="p">,</span><span class="w"> </span><span class="no">r8</span><span class="p">]</span><span class="w">    </span><span class="c1">// output[counter] = value</span>
+<a id="__codelineno-11-75" name="__codelineno-11-75" href="#__codelineno-11-75"></a>
+<a id="__codelineno-11-76" name="__codelineno-11-76" href="#__codelineno-11-76"></a><span class="w">                </span><span class="nf">add</span><span class="w"> </span><span class="no">r4</span><span class="p">,</span><span class="w"> </span><span class="no">r4</span><span class="p">,</span><span class="w"> </span><span class="mi">#1</span><span class="w">      </span><span class="c1">// counter++</span>
+<a id="__codelineno-11-77" name="__codelineno-11-77" href="#__codelineno-11-77"></a><span class="w">            </span><span class="nl">if2end:</span>
+<a id="__codelineno-11-78" name="__codelineno-11-78" href="#__codelineno-11-78"></a><span class="w">            </span><span class="nf">b</span><span class="w"> </span><span class="no">if1end</span>
+<a id="__codelineno-11-79" name="__codelineno-11-79" href="#__codelineno-11-79"></a>
+<a id="__codelineno-11-80" name="__codelineno-11-80" href="#__codelineno-11-80"></a><span class="w">        </span><span class="nl">else:</span>
+<a id="__codelineno-11-81" name="__codelineno-11-81" href="#__codelineno-11-81"></a><span class="w">            </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r10</span><span class="p">,</span><span class="w"> </span><span class="err">=</span><span class="no">SZAM3</span><span class="w">     </span><span class="c1">// r10 = SZAM3 címe</span>
+<a id="__codelineno-11-82" name="__codelineno-11-82" href="#__codelineno-11-82"></a><span class="w">            </span><span class="nf">ldr</span><span class="w"> </span><span class="no">r10</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r10</span><span class="p">]</span><span class="w">      </span><span class="c1">// r10 = -2048</span>
+<a id="__codelineno-11-83" name="__codelineno-11-83" href="#__codelineno-11-83"></a><span class="w">            </span><span class="nf">mul</span><span class="w"> </span><span class="no">r8</span><span class="p">,</span><span class="w"> </span><span class="no">r4</span><span class="p">,</span><span class="w"> </span><span class="no">r7</span><span class="w">      </span><span class="c1">// r8 = counter * 4</span>
+<a id="__codelineno-11-84" name="__codelineno-11-84" href="#__codelineno-11-84"></a><span class="w">            </span><span class="nf">str</span><span class="w"> </span><span class="no">r10</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">r3</span><span class="p">,</span><span class="w"> </span><span class="no">r8</span><span class="p">]</span><span class="w">   </span><span class="c1">// output[counter] = -2048</span>
+<a id="__codelineno-11-85" name="__codelineno-11-85" href="#__codelineno-11-85"></a>
+<a id="__codelineno-11-86" name="__codelineno-11-86" href="#__codelineno-11-86"></a><span class="w">            </span><span class="nf">add</span><span class="w"> </span><span class="no">r4</span><span class="p">,</span><span class="w"> </span><span class="no">r4</span><span class="p">,</span><span class="w"> </span><span class="mi">#1</span><span class="w">      </span><span class="c1">// counter++</span>
+<a id="__codelineno-11-87" name="__codelineno-11-87" href="#__codelineno-11-87"></a><span class="w">        </span><span class="nl">if1end:</span>
+<a id="__codelineno-11-88" name="__codelineno-11-88" href="#__codelineno-11-88"></a>
+<a id="__codelineno-11-89" name="__codelineno-11-89" href="#__codelineno-11-89"></a><span class="w">        </span><span class="nf">add</span><span class="w"> </span><span class="no">r5</span><span class="p">,</span><span class="w"> </span><span class="no">r5</span><span class="p">,</span><span class="w"> </span><span class="mi">#1</span><span class="w">  </span><span class="c1">// idx++</span>
+<a id="__codelineno-11-90" name="__codelineno-11-90" href="#__codelineno-11-90"></a><span class="w">        </span><span class="nf">b</span><span class="w"> </span><span class="no">for</span>
+<a id="__codelineno-11-91" name="__codelineno-11-91" href="#__codelineno-11-91"></a><span class="w">    </span><span class="nl">endfor:</span>
+<a id="__codelineno-11-92" name="__codelineno-11-92" href="#__codelineno-11-92"></a>
+<a id="__codelineno-11-93" name="__codelineno-11-93" href="#__codelineno-11-93"></a><span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">r0</span><span class="p">,</span><span class="w"> </span><span class="no">r4</span><span class="w">         </span><span class="c1">// counter legyen a visszatérési érték</span>
+<a id="__codelineno-11-94" name="__codelineno-11-94" href="#__codelineno-11-94"></a>
+<a id="__codelineno-11-95" name="__codelineno-11-95" href="#__codelineno-11-95"></a><span class="w">    </span><span class="c1">// epilógus</span>
+<a id="__codelineno-11-96" name="__codelineno-11-96" href="#__codelineno-11-96"></a><span class="w">    </span><span class="nf">pop</span><span class="w"> </span><span class="p">{</span><span class="no">r4-r11</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="no">pc</span><span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Vissza a tetejére
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Élőláb" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Előző: Index">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Előző
+              </span>
+              <div class="md-ellipsis">
+                Index
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../assembly-intel/" class="md-footer__link md-footer__link--next" aria-label="Következő: Assembly Intel X86 Linux - 2.ZH Jegyzet">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Következő
+              </span>
+              <div class="md-ellipsis">
+                Assembly Intel X86 Linux - 2.ZH Jegyzet
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 - 2023 Barna Gergely
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+    
+  
+
+
+
+
+  
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" checked>
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Elfogadás</button>
+    
+    
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit", "content.code.copy", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Verzi\u00f3v\u00e1lt\u00e1s"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
