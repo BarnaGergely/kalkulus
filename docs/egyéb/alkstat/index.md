@@ -50,6 +50,8 @@ Nem lesz olyan feladat ahol több féle próbával is meg lehet oldani, csak egy
 
 ![orai.jpg](orai.jpg)
 
+![probak](https://cdn.discordapp.com/attachments/611921418904666152/1313995986389045269/alkstat01.png)
+
 ### Valószínűség tesztelése
 
 - **Binomiális teszt:** igaz/hamis értékek eloszlásának aránya (pl. érme dobás, győzelem/vereség)
