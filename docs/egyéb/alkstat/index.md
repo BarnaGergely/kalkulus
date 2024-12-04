@@ -76,16 +76,16 @@ Nem lesz olyan feladat ahol több féle próbával is meg lehet oldani, csak egy
 - **DISZKRÉT | khi-négyzet próba függetlenség tesztelésére:** diszkrét változók közötti függetlenség tesztelése
   - `#!r chisq.test(adatok$education, adatok$region)`
 
-### Normalitás tesztelése
+### egyéb próbák, amik valszeg nem lesznek ZH-n
 
-- **t-próba:** ha a változók eloszlása normális, akkor két minta közötti különbség szignifikáns-e (pl. két csoport közötti különbség)
-- **kétmintás t-próba:** ha a változók eloszlása normális, akkor két csoport közötti különbség szignifikáns-e (pl. két csoport közötti különbség)
-- **páros t-próba:** ha a változók eloszlása normális, akkor két csoport közötti különbség szignifikáns-e (pl. két csoport közötti különbség)
+- **t-próba:** mintában egy valószínűségi változó átlaga szignifikánsan különbözik-e egy adott m értéktől.
+- **kétmintás t-próba:** Azonos eloszlású e a két minta (két minta átlaga egyenlő)
+- **páros t-próba:** jellemzően hasonló egységek párjaiból álló mintából vagy egy olyan egységcsoportból áll, amelyet kétszer teszteltek ("ismételt mérések" t-teszt). (például kontrollokra, edzéstervek hatékonyságának ellenőrzésére.)
 
-### Variancia tesztelése
+#### Variancia tesztelése
 
-- **F-próba:** ha a két csoport varianciája eltér és normális az eloszlásuk, akkor két csoport közötti különbség szignifikáns-e
-- **Welch-próba:** ha a két csoport varianciája eltér és normális az eloszlásuk, akkor két minta közötti különbség szignifikáns-e
+- **F-próba:**  szórásnégyzetek egyenlőségét vizsgáló eljárás, melynél a nullhipotézis, hogy két normális eloszlású mintának azonos a varianciája.
+- **Welch-próba:** két külön mintában egy-egy valószínűségi változó átlagai egymástól szignifikánsan különböznek-e
 
 ## feladatok
 
